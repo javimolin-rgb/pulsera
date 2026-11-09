@@ -1,0 +1,1191 @@
+<title>Taller de pulseras de hilo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: una columna de lectura de 68ch sobre papel, con el patrón elegido en un panel de dos columnas y la medida siempre a mano en una barra fija abajo en móvil. */
+:root{
+  --papel:#f6f3ed;
+  --papel-2:#fffefb;
+  --papel-3:#ece7dd;
+  --tinta:#221f29;
+  --tinta-2:#5e586b;
+  --tinta-3:#8b8498;
+  --linea:#dcd4c8;
+  --linea-2:#c6bcac;
+  --acento:#b31f5c;
+  --acento-sobre:#fff;
+  --acento-tenue:#f7e4ec;
+  --acento-2:#0b7a82;
+  --acento-3:#b4811a;
+  --ok:#2f7a44;
+  --aviso:#9a5b12;
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --cuerpo:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --dato:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --sombra:0 1px 0 rgba(34,31,41,.05),0 12px 28px -20px rgba(34,31,41,.45);
+  --radio:10px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --papel:#15141b;
+    --papel-2:#1e1c25;
+    --papel-3:#272432;
+    --tinta:#f0eae3;
+    --tinta-2:#afa8ba;
+    --tinta-3:#857e92;
+    --linea:#332f3e;
+    --linea-2:#443f52;
+    --acento:#ff74a6;
+    --acento-sobre:#2a0b18;
+    --acento-tenue:#3a1626;
+    --acento-2:#45cfd6;
+    --acento-3:#e6b64c;
+    --ok:#6cc586;
+    --aviso:#dfa75a;
+    --sombra:0 1px 0 rgba(0,0,0,.3),0 12px 28px -20px rgba(0,0,0,.8);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --papel:#15141b;
+  --papel-2:#1e1c25;
+  --papel-3:#272432;
+  --tinta:#f0eae3;
+  --tinta-2:#afa8ba;
+  --tinta-3:#857e92;
+  --linea:#332f3e;
+  --linea-2:#443f52;
+  --acento:#ff74a6;
+  --acento-sobre:#2a0b18;
+  --acento-tenue:#3a1626;
+  --acento-2:#45cfd6;
+  --acento-3:#e6b64c;
+  --ok:#6cc586;
+  --aviso:#dfa75a;
+  --sombra:0 1px 0 rgba(0,0,0,.3),0 12px 28px -20px rgba(0,0,0,.8);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--papel);
+  color:var(--tinta);
+  font-family:var(--cuerpo);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+}
+.env{
+  width:100%;
+  max-width:1040px;
+  margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+h1,h2,h3,h4{font-family:var(--display);font-weight:700;line-height:1.1;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.1rem,7vw,3.4rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.5rem,4vw,2.1rem);letter-spacing:-.015em}
+h3{font-size:1.18rem;letter-spacing:-.01em}
+h4{font-size:.95rem;letter-spacing:.02em}
+p{margin:0}
+a{color:var(--acento);text-underline-offset:3px}
+:focus-visible{outline:2.5px solid var(--acento);outline-offset:2px;border-radius:4px}
+.eyebrow{
+  font-family:var(--display);font-size:.72rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--acento-2);
+}
+.num{font-family:var(--dato);font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+
+/* ---------- cabecera ---------- */
+.portada{
+  border-bottom:1px solid var(--linea);
+  background:
+    radial-gradient(120% 90% at 8% 0%,var(--acento-tenue) 0%,transparent 55%),
+    var(--papel-2);
+}
+.portada .env{padding-block:clamp(34px,7vw,64px) clamp(26px,5vw,44px)}
+.portada-grid{display:grid;gap:22px;grid-template-columns:minmax(0,1fr);align-items:end}
+@media(min-width:800px){.portada-grid{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:40px}}
+.lema{font-size:1.06rem;color:var(--tinta-2);max-width:46ch;margin-top:14px}
+.lema strong{color:var(--tinta);font-weight:600}
+.pasos-indice{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;list-style:none;padding:0}
+.pasos-indice a{
+  display:inline-flex;align-items:baseline;gap:7px;text-decoration:none;
+  font-family:var(--display);font-size:.85rem;font-weight:600;color:var(--tinta);
+  border:1px solid var(--linea-2);border-radius:999px;padding:5px 13px 6px;background:var(--papel-2);
+}
+.pasos-indice a:hover{border-color:var(--acento);color:var(--acento)}
+.pasos-indice b{font-family:var(--dato);font-size:.72rem;color:var(--acento-2)}
+.muestrario{display:flex;gap:4px;align-items:flex-end;height:120px}
+.muestrario i{display:block;width:12px;border-radius:999px 999px 2px 2px;opacity:.95}
+
+/* ---------- secciones ---------- */
+section{border-bottom:1px solid var(--linea)}
+section > .env{padding-block:clamp(32px,6vw,56px)}
+.cab-seccion{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;margin-bottom:6px}
+.sub{color:var(--tinta-2);max-width:68ch;margin-top:10px}
+.sub + .sub{margin-top:8px}
+.banda-alt{background:var(--papel-2)}
+
+/* ---------- barra de medidas ---------- */
+.medidas{display:grid;gap:18px;margin-top:24px}
+@media(min-width:760px){.medidas{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);align-items:start}}
+.campos{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.campo{display:flex;flex-direction:column;gap:6px;min-width:0}
+.campo > span{font-family:var(--display);font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta-2)}
+.campo small{color:var(--tinta-3);font-size:.78rem;line-height:1.35}
+input[type=number],select{
+  font:600 1rem/1.3 var(--dato);
+  color:var(--tinta);background:var(--papel-2);
+  border:1px solid var(--linea-2);border-radius:8px;padding:9px 10px;width:100%;
+}
+select{font-family:var(--display);font-weight:600}
+input[type=range]{width:100%;accent-color:var(--acento)}
+.resumen{
+  background:var(--papel-3);border:1px solid var(--linea);border-radius:var(--radio);
+  padding:16px 18px;display:grid;gap:10px;
+}
+.resumen dl{margin:0;display:grid;grid-template-columns:1fr auto;gap:7px 12px;align-items:baseline}
+.resumen dt{color:var(--tinta-2);font-size:.9rem}
+.resumen dd{margin:0;font-family:var(--dato);font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+.resumen .grande{font-family:var(--display);font-size:1.5rem;font-weight:800;letter-spacing:-.01em}
+
+/* ---------- catálogo ---------- */
+.rejilla{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));margin-top:26px;padding:0;list-style:none}
+.tarjeta{
+  position:relative;display:flex;flex-direction:column;gap:10px;width:100%;min-width:0;
+  text-align:left;cursor:pointer;
+  background:var(--papel-2);border:1px solid var(--linea);border-radius:var(--radio);
+  padding:12px;color:inherit;font:inherit;
+}
+.tarjeta:hover{border-color:var(--linea-2);transform:translateY(-2px)}
+.tarjeta[aria-pressed=true]{border-color:var(--acento);box-shadow:0 0 0 2px var(--acento-tenue),var(--sombra)}
+@media(prefers-reduced-motion:no-preference){.tarjeta{transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}}
+.tarjeta .mini{background:var(--papel);border:1px solid var(--linea);border-radius:6px;overflow:hidden;line-height:0;display:flex;justify-content:center;padding:7px 0}
+.tarjeta .mini svg{display:block;width:auto;height:116px;max-width:100%}
+.tarjeta h3{font-size:1rem}
+.tarjeta .meta{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;font-size:.78rem;color:var(--tinta-2);font-family:var(--display);font-weight:600}
+.puntos{display:inline-flex;gap:3px;align-items:center}
+.puntos i{width:6px;height:6px;border-radius:50%;background:var(--linea-2);display:block}
+.puntos i.on{background:var(--acento-3)}
+
+/* ---------- panel del patrón ---------- */
+.panel{display:grid;gap:22px;margin-top:4px;grid-template-columns:minmax(0,1fr)}
+.panel > *{min-width:0}
+@media(min-width:880px){.panel{grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:30px;align-items:start}}
+.carta-grafico{
+  background:var(--papel-2);border:1px solid var(--linea);border-radius:var(--radio);
+  padding:14px;box-shadow:var(--sombra);min-width:0;
+}
+@media(min-width:880px){.carta-grafico{position:sticky;top:16px}}
+.grafico-caja{overflow-x:auto;overflow-y:hidden;margin:0 -4px}
+.grafico-caja svg{display:block;margin:0 auto;max-width:100%;height:auto}
+.leyenda{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:12px;padding-top:12px;border-top:1px solid var(--linea)}
+.leyenda span{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;color:var(--tinta-2)}
+.leyenda b{width:13px;height:13px;border-radius:3px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.28)}
+.leyenda code{font-family:var(--dato);font-size:.72rem;color:var(--tinta-3)}
+.mando{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+button.btn{
+  font:600 .88rem/1 var(--display);color:var(--tinta);background:var(--papel);
+  border:1px solid var(--linea-2);border-radius:8px;padding:9px 13px;cursor:pointer;
+}
+button.btn:hover{border-color:var(--acento);color:var(--acento)}
+button.btn.primario{background:var(--acento);color:var(--acento-sobre);border-color:var(--acento)}
+button.btn.primario:hover{filter:brightness(1.08);color:var(--acento-sobre)}
+button.btn[disabled]{opacity:.45;cursor:not-allowed}
+.mando .cuenta{font-family:var(--dato);font-size:.82rem;color:var(--tinta-2);margin-left:auto}
+
+.bloque{background:var(--papel-2);border:1px solid var(--linea);border-radius:var(--radio);padding:16px 18px;min-width:0}
+.bloque + .bloque{margin-top:16px}
+.bloque > h3{margin-bottom:4px}
+.bloque .nota{font-size:.86rem;color:var(--tinta-2);margin-top:6px}
+
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+.tabla-caja{overflow-x:auto;margin-top:12px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--linea)}
+th{font-family:var(--display);font-size:.74rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--tinta-2);white-space:nowrap}
+td.n{font-family:var(--dato);font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+tfoot td{border-top:2px solid var(--linea-2);border-bottom:0;font-weight:600;padding-top:10px}
+.hilo-celda{display:flex;align-items:center;gap:8px;min-width:0}
+.hilo-celda b{width:14px;height:14px;border-radius:3px;flex:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,.28)}
+.hilo-celda small{font-family:var(--dato);font-size:.72rem;color:var(--tinta-3)}
+.rol{font-family:var(--display);font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  border:1px solid var(--linea-2);border-radius:999px;padding:1px 7px;color:var(--tinta-2)}
+
+ol.filas{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:6px;max-height:420px;overflow-y:auto}
+ol.filas li{
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:baseline;
+  padding:8px 10px;border:1px solid transparent;border-radius:8px;font-size:.9rem;
+}
+ol.filas li .ix{font-family:var(--dato);font-size:.76rem;color:var(--tinta-3);padding-top:2px}
+ol.filas li.activa{background:var(--acento-tenue);border-color:var(--acento)}
+ol.filas li.activa .ix{color:var(--acento)}
+.nudo-chip{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.nudo-chip b{width:11px;height:11px;border-radius:3px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.28)}
+.nudo-chip em{font-style:normal;font-family:var(--dato);font-size:.78rem;color:var(--tinta-2)}
+
+/* ---------- tutorial de nudos ---------- */
+.nudos{display:grid;gap:18px;margin-top:26px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.nudo-ficha{background:var(--papel-2);border:1px solid var(--linea);border-radius:var(--radio);padding:16px;min-width:0}
+.nudo-ficha h3 code{white-space:nowrap}
+.nudo-ficha h3{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}
+.nudo-ficha h3 code{font-family:var(--dato);font-size:.75rem;color:var(--tinta-3);font-weight:400}
+.tiras{display:flex;gap:10px;margin:14px 0;overflow-x:auto;padding-bottom:4px}
+.tira{flex:1 1 0;min-width:96px;text-align:center}
+.tira svg{display:block;width:100%;max-width:160px;height:auto;margin:0 auto;background:var(--papel);border:1px solid var(--linea);border-radius:8px}
+.tira figcaption{font-size:.78rem;color:var(--tinta-2);margin-top:6px;line-height:1.35;text-align:left}
+.tira figcaption b{font-family:var(--dato);font-size:.72rem;color:var(--acento);display:block}
+.nudo-ficha p{font-size:.92rem;color:var(--tinta-2)}
+.nudo-ficha .usa{font-size:.84rem;color:var(--tinta-3);margin-top:10px;padding-top:10px;border-top:1px solid var(--linea)}
+
+/* ---------- cierres ---------- */
+.cierres{display:grid;gap:16px;margin-top:24px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.cierre{background:var(--papel-2);border:1px solid var(--linea);border-radius:var(--radio);padding:16px;min-width:0}
+.cierre svg{display:block;width:100%;height:auto;background:var(--papel);border:1px solid var(--linea);border-radius:8px;margin-bottom:12px}
+.cierre ol{margin:10px 0 0;padding-left:1.2em;font-size:.9rem;color:var(--tinta-2);display:grid;gap:5px}
+
+/* ---------- formula ---------- */
+.formula{
+  font-family:var(--dato);font-size:.88rem;line-height:1.9;
+  background:var(--papel-3);border:1px solid var(--linea);border-radius:var(--radio);
+  padding:14px 16px;margin-top:16px;overflow-x:auto;
+}
+.formula b{color:var(--acento)}
+.dos-col{display:grid;gap:20px;margin-top:22px}
+@media(min-width:800px){.dos-col{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}}
+ul.lista{margin:12px 0 0;padding-left:1.15em;display:grid;gap:7px;color:var(--tinta-2);font-size:.93rem}
+ul.lista strong{color:var(--tinta);font-weight:600}
+.pie{color:var(--tinta-3);font-size:.84rem}
+.pie .env{padding-block:26px 34px;display:grid;gap:8px}
+</style>
+
+<header class="portada">
+  <div class="env">
+    <div class="portada-grid">
+      <div>
+        <p class="eyebrow">Pulseras de hilo anudado</p>
+        <h1>Taller de pulseras de hilo</h1>
+        <p class="lema">Diez patrones con su gráfico de nudos, el <strong>paso a paso fila por fila</strong> y el cálculo de <strong>cuánto hilo cortar</strong> para el largo de muñeca que quieras.</p>
+        <ul class="pasos-indice">
+          <li><a href="#medida"><b>1</b> Tu medida</a></li>
+          <li><a href="#patrones"><b>2</b> Patrones</a></li>
+          <li><a href="#nudos"><b>3</b> Los nudos</a></li>
+          <li><a href="#cierres"><b>4</b> Cierres</a></li>
+          <li><a href="#calculo"><b>5</b> El cálculo</a></li>
+        </ul>
+      </div>
+      <div class="muestrario" id="muestrario" aria-hidden="true"></div>
+    </div>
+  </div>
+</header>
+
+<section id="medida">
+  <div class="env">
+    <div class="cab-seccion">
+      <p class="eyebrow">Paso 1</p>
+      <h2>Tu medida</h2>
+    </div>
+    <p class="sub">Mide la muñeca con una cinta o con una tira de papel que luego apoyas en la regla, justo donde se va a apoyar la pulsera. Lo demás se calcula solo: todo lo que elijas aquí se aplica al patrón que elijas abajo.</p>
+    <div class="medidas">
+      <div class="campos">
+        <label class="campo">
+          <span>Muñeca</span>
+          <input type="number" id="muneca" min="8" max="26" step="0.5" value="16">
+          <small>Centímetros de contorno, sin apretar.</small>
+        </label>
+        <label class="campo">
+          <span>Holgura</span>
+          <input type="number" id="holgura" min="0" max="4" step="0.5" value="1.5">
+          <small>Lo que se suma para que no apriete. 1,5 cm es lo habitual.</small>
+        </label>
+        <label class="campo">
+          <span>Cierre</span>
+          <select id="cierre"></select>
+          <small id="cierre-nota"></small>
+        </label>
+        <label class="campo">
+          <span>Hilo</span>
+          <select id="hilo"></select>
+          <small id="hilo-nota"></small>
+        </label>
+      </div>
+      <div class="resumen" aria-live="polite">
+        <div>
+          <p class="eyebrow">Pulsera terminada</p>
+          <p class="grande num" id="r-final">17,5 cm</p>
+        </div>
+        <dl>
+          <dt>Banda anudada</dt><dd id="r-banda">15,0 cm</dd>
+          <dt>Reservado al cierre</dt><dd id="r-cierre">2,5 cm</dd>
+          <dt>Filas de nudos aprox.</dt><dd id="r-filas">53</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="patrones" class="banda-alt">
+  <div class="env">
+    <div class="cab-seccion">
+      <p class="eyebrow">Paso 2</p>
+      <h2>Elige un patrón</h2>
+    </div>
+    <p class="sub">Los cinco primeros se leen en el gráfico de nudos: cada símbolo es un nudo doble y el color del símbolo es el hilo que anuda. Los cuatro últimos son de macramé y trenza, y se explican con dibujos.</p>
+    <ul class="rejilla" id="catalogo"></ul>
+
+    <div class="panel" id="panel">
+      <div class="carta-grafico">
+        <p class="eyebrow" id="p-tipo">Gráfico de nudos</p>
+        <h3 id="p-nombre" style="margin:4px 0 12px">—</h3>
+        <div class="grafico-caja"><div id="p-grafico"></div></div>
+        <div class="leyenda" id="p-leyenda"></div>
+        <div class="mando">
+          <button class="btn" id="b-ant" type="button">← Fila anterior</button>
+          <button class="btn primario" id="b-sig" type="button">Siguiente fila →</button>
+          <span class="cuenta" id="p-cuenta"></span>
+        </div>
+      </div>
+
+      <div>
+        <div class="bloque">
+          <h3>Hilo que necesitas</h3>
+          <p class="nota" id="p-resumen-hilo"></p>
+          <div class="tabla-caja">
+            <table>
+              <thead><tr><th>Hilo</th><th>Papel</th><th>Cortar cada uno</th><th>Cuántos</th><th>Total</th></tr></thead>
+              <tbody id="p-tabla"></tbody>
+              <tfoot id="p-tabla-pie"></tfoot>
+            </table>
+          </div>
+          <p class="nota" id="p-aviso"></p>
+        </div>
+
+        <div class="bloque">
+          <h3>Paso a paso</h3>
+          <p class="nota" id="p-intro"></p>
+          <ol class="filas" id="p-filas"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="nudos">
+  <div class="env">
+    <div class="cab-seccion">
+      <p class="eyebrow">Paso 3</p>
+      <h2>Los nudos, uno a uno</h2>
+    </div>
+    <p class="sub">Con los dos primeros se hace casi todo. En las pulseras de hilo un "nudo" siempre es doble: se da la misma vuelta dos veces sobre el mismo hilo, y así queda firme y se ve el color. Sujeta la punta con cinta a la mesa o con una pinza de carpeta antes de empezar.</p>
+    <div class="nudos" id="lista-nudos"></div>
+  </div>
+</section>
+
+<section id="cierres" class="banda-alt">
+  <div class="env">
+    <div class="cab-seccion">
+      <p class="eyebrow">Paso 4</p>
+      <h2>Cómo cerrarla</h2>
+    </div>
+    <p class="sub">El cierre decide cuánto hilo de más tienes que dejar en las puntas, así que conviene elegirlo antes de cortar. Cada uno aparece en el desplegable del paso 1.</p>
+    <div class="cierres" id="lista-cierres"></div>
+  </div>
+</section>
+
+<section id="calculo">
+  <div class="env">
+    <div class="cab-seccion">
+      <p class="eyebrow">Paso 5</p>
+      <h2>De dónde sale el cálculo</h2>
+    </div>
+    <p class="sub">No hay misterio, y lo dejo a la vista para que puedas ajustarlo a tu mano: hay gente que anuda flojo y gasta menos, y gente que aprieta mucho y gasta más.</p>
+    <div class="formula" id="formula"></div>
+    <p class="sub">El multiplicador es lo único que cambia de verdad entre patrones: un nudo doble se come unos cuatro centímetros de hilo por cada centímetro de pulsera, y los patrones de nudo plano mucho más, porque los hilos de trabajo dan la vuelta entera alrededor de los del centro. Si te pasas, sobra hilo; si te quedas corto, hay que empalmar. Por eso el resultado ya lleva un 10 % de margen y se redondea hacia arriba.</p>
+
+    <div class="dos-col">
+      <div>
+        <h3>Largo según la muñeca</h3>
+        <p class="sub" style="font-size:.93rem">Medidas orientativas de contorno de muñeca, para cuando haces una pulsera de regalo y no tienes la mano delante.</p>
+        <div class="tabla-caja">
+          <table>
+            <thead><tr><th>Para</th><th>Muñeca</th><th>Pulsera</th></tr></thead>
+            <tbody>
+              <tr><td>Bebé</td><td class="n">10–12 cm</td><td class="n">12–13 cm</td></tr>
+              <tr><td>Niño o niña (3–7)</td><td class="n">12–14 cm</td><td class="n">14–15 cm</td></tr>
+              <tr><td>Niño o niña (8–12)</td><td class="n">14–15 cm</td><td class="n">15–17 cm</td></tr>
+              <tr><td>Muñeca fina</td><td class="n">14–15 cm</td><td class="n">16–17 cm</td></tr>
+              <tr><td>Muñeca media</td><td class="n">16–17 cm</td><td class="n">17–19 cm</td></tr>
+              <tr><td>Muñeca ancha</td><td class="n">18–20 cm</td><td class="n">19–22 cm</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3>Lo que hace falta</h3>
+        <ul class="lista">
+          <li><strong>Hilo.</strong> El clásico es el mouliné de algodón (DMC, Anchor), que viene en madejas de 8 m con seis cabos que se pueden separar. Para macramé, cordón encerado o de algodón de 1 mm.</li>
+          <li><strong>Tijeras</strong> que corten limpio, y cinta de carrocero o una pinza de carpeta para sujetar la labor.</li>
+          <li><strong>Una regla o cinta métrica</strong>, porque medir el hilo a ojo es lo que más disgustos da.</li>
+          <li><strong>Opcional:</strong> cuentas con agujero de 2 mm o más, un broche de pinza, un mechero o un poco de pegamento para rematar el cordón encerado.</li>
+        </ul>
+        <h3 style="margin-top:20px">Trucos que se agradecen</h3>
+        <ul class="lista">
+          <li>Ordena los hilos en el orden del gráfico <strong>antes</strong> del primer nudo y haz un nudo grande con todos juntos arriba.</li>
+          <li>Aprieta todos los nudos con la misma fuerza: así la pulsera sale recta y el largo coincide con el cálculo.</li>
+          <li>Si el hilo se acorta antes de terminar, empalma en un borde y esconde las puntas por detrás con un par de nudos.</li>
+          <li>Prueba el largo en la muñeca cuando lleves unos dos tercios: todavía estás a tiempo de alargar.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="pie">
+  <div class="env">
+    <p>Los largos de hilo son estimaciones con un 10 % de margen, redondeadas hacia arriba a los 5 cm. Cuanto más apretado anudes, más hilo gasta.</p>
+    <p>Hecho para la carpeta <span class="num">pulsera</span>. Los códigos de color son referencias DMC de mouliné.</p>
+  </div>
+</footer>
+
+<script>
+/*==LOGICA_INI==*/
+/* ---------------- hilos (referencias DMC de mouliné) ---------------- */
+var HILOS = {
+  '3804':{n:'Rosa fucsia', x:'#c2186e'},
+  '3845':{n:'Turquesa',    x:'#0fa3b1'},
+  '783' :{n:'Mostaza',     x:'#d99a2b'},
+  '712' :{n:'Crudo',       x:'#f1e2c7'},
+  '937' :{n:'Verde oliva', x:'#51702c'},
+  '351' :{n:'Coral',       x:'#e8705f'},
+  '552' :{n:'Morado',      x:'#7a3f93'},
+  '311' :{n:'Azul noche',  x:'#1c3c6b'},
+  '310' :{n:'Negro',       x:'#232323'},
+  'B5200':{n:'Blanco',     x:'#fbfaf7'}
+};
+function hiloInfo(c){ return HILOS[c] || {n:c, x:'#888'}; }
+
+/* ---------------- tipos de hilo ---------------- */
+var TIPOS = {
+  m6:  {n:'Mouliné, 6 cabos (el clásico)', f:1.00, filas:3.5, madeja:800, nota:'Madejas de 8 m. Se usa entero, sin separar los cabos.'},
+  m3:  {n:'Mouliné, 3 cabos (pulsera fina)', f:0.82, filas:5.0, madeja:800, nota:'Separa la madeja en dos mitades de 3 cabos. Pulsera más delgada.'},
+  enc1:{n:'Cordón encerado 1 mm', f:1.15, filas:2.4, madeja:0, nota:'Para macramé. Se remata con mechero o pegamento.'},
+  alg2:{n:'Cordón de algodón 2 mm', f:1.40, filas:1.7, madeja:0, nota:'Pulsera gruesa, pocos nudos, se hace rápido.'}
+};
+
+/* ---------------- cierres ---------------- */
+var CIERRES = {
+  trenzas:  {n:'Trenzas para atar', reduce:2.5, extra:22, cordon:0,
+             nota:'Se dejan 11 cm sin anudar a cada lado y se trenzan.'},
+  corredizo:{n:'Nudo corredizo (ajustable)', reduce:2.0, extra:14, cordon:30,
+             nota:'Ajustable. Pide 1 cordón aparte de 30 cm.'},
+  broche:   {n:'Broche de pinza', reduce:1.5, extra:8, cordon:0,
+             nota:'El más limpio. Mide el broche y réstalo si es más largo.'}
+};
+
+/* ---------------- patrones ---------------- */
+function reglaRayas(){ return 'f'; }
+function reglaChevron(r,i,n){ return i <= (n/2 - 1) ? 'f' : 'b'; }
+function reglaZigzag(r){ return (r % 12) < 6 ? 'f' : 'b'; }
+function reglaRombos(r,i,n){
+  var baja = (r % 8) < 4;
+  if(baja) return i <= (n/2 - 1) ? 'f' : 'b';
+  return i <= (n/2 - 1) ? 'b' : 'f';
+}
+function reglaDamero(){ return 'fb'; }
+
+function h(codigos, base){
+  return codigos.map(function(c){ return {dmc:c, base:!!base}; });
+}
+
+var PATRONES = [
+  {
+    id:'rayas', nombre:'Rayas diagonales', alias:'candy stripe', dif:1, familia:'grafico',
+    hilos:h(['3804','3845','783','712','3804','3845','783','712']),
+    nudo:reglaRayas, ciclo:2, mult:4.0,
+    intro:'Todos los nudos van hacia la derecha. Es el patrón para aprender: una sola cosa que memorizar y el resultado ya se ve bonito.'
+  },
+  {
+    id:'chevron', nombre:'Chevron', alias:'flecha o pico', dif:1, familia:'grafico',
+    hilos:h(['3804','3845','783','712','712','783','3845','3804']),
+    nudo:reglaChevron, ciclo:2, mult:4.0,
+    intro:'Los colores van en espejo: dos hilos de cada uno, uno en cada mitad. La mitad izquierda se anuda hacia la derecha y la derecha hacia la izquierda, y se juntan en el centro.'
+  },
+  {
+    id:'chevron12', nombre:'Chevron ancho', alias:'12 hilos, 6 colores', dif:2, familia:'grafico',
+    hilos:h(['3804','552','3845','937','783','712','712','783','937','3845','552','3804']),
+    nudo:reglaChevron, ciclo:2, mult:4.0,
+    intro:'El mismo chevron con 12 hilos. La pulsera sale casi el doble de ancha y cada pico tarda más en cerrarse.'
+  },
+  {
+    id:'zigzag', nombre:'Zigzag', alias:'olas', dif:2, familia:'grafico',
+    hilos:h(['3804','3845','783','712','3804','3845','783','712']),
+    nudo:reglaZigzag, ciclo:12, mult:4.2,
+    intro:'Seis filas hacia la derecha y seis hacia la izquierda. Al cambiar de sentido, las rayas giran y se forma la onda.'
+  },
+  {
+    id:'rombos', nombre:'Rombos', alias:'diamantes', dif:2, familia:'grafico',
+    hilos:h(['3804','3845','783','712','712','783','3845','3804']),
+    nudo:reglaRombos, ciclo:8, mult:4.2,
+    intro:'Cuatro filas de pico hacia abajo y cuatro de pico hacia arriba. Al encontrarse, los picos cierran el rombo.'
+  },
+  {
+    id:'damero', nombre:'Damero', alias:'ladrillo', dif:2, familia:'grafico',
+    hilos:h(['310','712','310','712','310','712','310','712']),
+    nudo:reglaDamero, ciclo:2, mult:5.5,
+    intro:'Todos los nudos son dobles de ida y vuelta, así que ningún hilo se mueve de su sitio: cada uno se queda en su columna y salen cuadros alternos. Gasta más hilo porque cada nudo lleva el doble de vueltas.'
+  },
+  {
+    id:'trenza4', nombre:'Trenza de cuatro hilos', alias:'trenza plana', dif:1, familia:'trenza',
+    hilos:h(['3804','3845','3804','3845']),
+    mult:1.6,
+    intro:'Sin nudos: solo cruzar. Es lo más rápido que se puede hacer y queda una cinta plana y firme.',
+    pasos:[
+      'Junta los cuatro hilos y haz un nudo con todos a 10 cm de la punta. Sujeta ese nudo a la mesa con cinta.',
+      'Separa los hilos en abanico: 1, 2, 3 y 4 de izquierda a derecha.',
+      'Pasa el hilo 1 por encima del 2 y el 4 por debajo del 3 y por encima del 1.',
+      'Vuelve a numerar de izquierda a derecha y repite el mismo movimiento. Tira un poco cada dos pasadas para que quede tupida.',
+      'Al llegar al largo de la banda, haz un nudo con los cuatro hilos y deja las puntas para el cierre.'
+    ]
+  },
+  {
+    id:'plano', nombre:'Nudo plano', alias:'cobra, macramé', dif:1, familia:'macrame',
+    hilos:h(['311','311'],true).concat(h(['783','783'])),
+    mult:7.0, multBase:1.1,
+    intro:'Dos hilos quedan quietos en el centro y los dos de fuera trabajan alrededor. El clásico del macramé, y el que mejor combina con un cierre corredizo.',
+    pasos:[
+      'Corta los dos hilos de base y los dos de trabajo según la tabla. Alinea los cuatro y haz un nudo arriba con todos, o pásalos por la anilla del broche.',
+      'Pasa el hilo de trabajo izquierdo por delante de los dos del centro y por detrás del derecho.',
+      'Pasa el derecho por detrás de los dos del centro y sácalo por el bucle que te dejó el izquierdo. Tira de los dos a la vez: medio nudo.',
+      'Repite empezando ahora por la derecha, en espejo. Eso completa el nudo plano.',
+      'Sigue alternando el lado de inicio en cada nudo. Si no alternas, sale la espiral.',
+      'Al llegar al largo, remata con un nudo y recorta, o pega las puntas si es cordón encerado.'
+    ]
+  },
+  {
+    id:'espiral', nombre:'Espiral de medio nudo', alias:'caracol', dif:1, familia:'macrame',
+    hilos:h(['311','311'],true).concat(h(['3845','3845'])),
+    mult:8.0, multBase:1.1,
+    intro:'Es el nudo plano hecho a medias: solo la primera mitad, siempre empezando por el mismo lado. La pulsera se va girando sola y se forma el caracol.',
+    pasos:[
+      'Monta igual que el nudo plano: dos hilos de base en el centro y dos de trabajo a los lados.',
+      'Haz solo el primer medio nudo: el izquierdo por delante del centro y por detrás del derecho; el derecho por detrás del centro y por el bucle.',
+      'Repite ese mismo medio nudo siempre desde la izquierda, sin alternar.',
+      'Cada tres o cuatro nudos la labor se tuerce: déjala girar y sigue anudando desde el lado que te quede a la izquierda.',
+      'Al llegar al largo, remata con un nudo plano completo para que el final no se desarme.'
+    ]
+  },
+  {
+    id:'cuentas', nombre:'Nudo plano con cuentas', alias:'macramé y mostacillas', dif:2, familia:'macrame',
+    hilos:h(['712','712'],true).concat(h(['552','552'])),
+    mult:6.0, multBase:1.1,
+    intro:'Nudo plano con una cuenta cada varios nudos. Gasta algo menos de hilo de trabajo porque las cuentas ocupan el lugar de unos cuantos nudos.',
+    pasos:[
+      'Necesitas cuentas con el agujero suficiente para los dos hilos de base juntos: 2 mm o más.',
+      'Haz tres o cuatro nudos planos seguidos para empezar la banda.',
+      'Enhebra una cuenta en los dos hilos del centro y súbela hasta apoyarla en el último nudo.',
+      'Cierra con un nudo plano justo debajo de la cuenta para que quede sujeta.',
+      'Repite el grupo de nudos y cuenta hasta completar el largo de la banda. Cuenta las cuentas antes de empezar: entra una cada 1,5 cm aproximadamente.',
+      'Remata con un nudo y cierra con nudo corredizo para poder quitarla sin deshacer nada.'
+    ]
+  }
+];
+function patronPorId(id){
+  for(var i=0;i<PATRONES.length;i++) if(PATRONES[i].id===id) return PATRONES[i];
+  return PATRONES[0];
+}
+
+/* ---------------- simulación del gráfico de nudos ----------------
+   Cada fila anuda parejas de hilos vecinos. Las filas pares anudan
+   las parejas (1-2)(3-4)..., las impares (2-3)(4-5)...
+   f  = nudo hacia la derecha: anuda el hilo izquierdo y los hilos se cambian
+   b  = nudo hacia la izquierda: anuda el derecho y los hilos se cambian
+   fb = nudo doble derecha-izquierda: anuda el izquierdo y nadie se mueve
+   bf = nudo doble izquierda-derecha: anuda el derecho y nadie se mueve      */
+function simular(p, nFilas){
+  var n = p.hilos.length;
+  var orden = p.hilos.map(function(x){ return x.dmc; });
+  var filas = [];
+  for(var r=0; r<nFilas; r++){
+    var ini = (r % 2 === 0) ? 0 : 1;
+    var nudos = [];
+    for(var i=ini; i+1<n; i+=2){
+      var t = p.nudo(r, i, n);
+      var color = (t==='f' || t==='fb') ? orden[i] : orden[i+1];
+      nudos.push({i:i, t:t, color:color});
+      if(t==='f' || t==='b'){ var tmp=orden[i]; orden[i]=orden[i+1]; orden[i+1]=tmp; }
+    }
+    filas.push(nudos);
+  }
+  return filas;
+}
+function periodo(p, max){
+  max = max || 64;
+  var n = p.hilos.length;
+  var ini = p.hilos.map(function(x){ return x.dmc; }).join(',');
+  var orden = p.hilos.map(function(x){ return x.dmc; });
+  for(var r=0; r<max; r++){
+    var k = (r % 2 === 0) ? 0 : 1;
+    for(var i=k; i+1<n; i+=2){
+      var t = p.nudo(r, i, n);
+      if(t==='f' || t==='b'){ var tmp=orden[i]; orden[i]=orden[i+1]; orden[i+1]=tmp; }
+    }
+    var listo = (r+1) % (p.ciclo || 2) === 0;
+    if(listo && orden.join(',') === ini) return r+1;
+  }
+  return null;
+}
+
+/* ---------------- cálculo de hilo ---------------- */
+function redondeaArriba(cm, a){ a = a || 5; return Math.ceil(cm / a) * a; }
+
+function calcular(p, est){
+  var cierre = CIERRES[est.cierre];
+  var tipo = TIPOS[est.hilo];
+  var largoFinal = est.muneca + est.holgura;
+  var banda = Math.max(2, largoFinal - cierre.reduce);
+  var densidad = (p.familia === 'macrame') ? tipo.filas * 0.62
+               : (p.familia === 'trenza')  ? tipo.filas * 0.8
+               : tipo.filas;
+  var filas = Math.round(banda * densidad);
+
+  var hilos = p.hilos.map(function(x){
+    var mult = (x.base && p.multBase) ? p.multBase : p.mult;
+    var exacto = banda * mult * tipo.f + cierre.extra;
+    if(x.base && p.multBase) exacto = banda * mult + cierre.extra;
+    return {
+      dmc:x.dmc, base:!!x.base, mult:mult,
+      exacto:exacto,
+      corte:redondeaArriba(exacto * 1.1, 5)
+    };
+  });
+
+  var grupos = [];
+  hilos.forEach(function(hl){
+    var g = null;
+    for(var i=0;i<grupos.length;i++){
+      if(grupos[i].dmc===hl.dmc && grupos[i].base===hl.base){ g=grupos[i]; break; }
+    }
+    if(!g){ g={dmc:hl.dmc, base:hl.base, corte:hl.corte, mult:hl.mult, cuantos:0}; grupos.push(g); }
+    g.cuantos++;
+  });
+  grupos.forEach(function(g){
+    g.total = g.corte * g.cuantos;
+    g.madejas = TIPOS[est.hilo].madeja ? Math.ceil(g.total / TIPOS[est.hilo].madeja) : 0;
+  });
+
+  var totalCm = grupos.reduce(function(s,g){ return s + g.total; }, 0) + (cierre.cordon || 0);
+  return {
+    largoFinal:largoFinal, banda:banda, reserva:cierre.reduce, filas:filas,
+    hilos:hilos, grupos:grupos, totalCm:totalCm,
+    cordon:cierre.cordon || 0, nHilos:p.hilos.length
+  };
+}
+/*==LOGICA_FIN==*/
+
+/* ---------------- dibujo: gráfico de nudos ---------------- */
+var FLECHA = {f:'↘', b:'↙', fb:'→', bf:'←'};
+var NOMBRE_NUDO = {
+  f:'nudo hacia la derecha',
+  b:'nudo hacia la izquierda',
+  fb:'nudo doble derecha-izquierda',
+  bf:'nudo doble izquierda-derecha'
+};
+var ANGULO = {f:45, b:135, fb:0, bf:180};
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function svgGrafico(p, filas, o){
+  var n = p.hilos.length, cw = o.cw, ch = o.ch, pad = o.pad;
+  var barra = o.barra ? Math.round(cw * 1.5) : 0;
+  var W = n * cw + pad * 2;
+  var H = pad * 2 + barra + filas.length * ch;
+  var s = [];
+  s.push('<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" role="img" aria-label="Gráfico de nudos de '+esc(p.nombre)+'">');
+  s.push('<rect x="0" y="0" width="'+W+'" height="'+H+'" fill="none"/>');
+  if(o.barra){
+    for(var i=0;i<n;i++){
+      var c = hiloInfo(p.hilos[i].dmc).x;
+      var bx = pad + i*cw + cw*0.2, bw = cw*0.6;
+      s.push('<rect x="'+bx.toFixed(1)+'" y="'+pad+'" width="'+bw.toFixed(1)+'" height="'+(barra-8)+'" rx="'+(bw/2).toFixed(1)+'" fill="'+c+'" stroke="rgba(0,0,0,.28)" stroke-width="1"/>');
+    }
+  }
+  if(o.activa != null && o.activa >= 0 && o.activa < filas.length){
+    var ry = pad + barra + o.activa*ch;
+    s.push('<rect x="1" y="'+ry+'" width="'+(W-2)+'" height="'+ch+'" rx="3" fill="rgba(179,31,92,.14)"/>');
+  }
+  for(var r=0;r<filas.length;r++){
+    var y = pad + barra + r*ch + ch/2;
+    for(var k=0;k<filas[r].length;k++){
+      var nd = filas[r][k];
+      var x = pad + (nd.i+1)*cw;
+      var col = hiloInfo(nd.color).x;
+      if(o.simple){
+        var d = Math.min(cw,ch)*0.42;
+        s.push('<rect x="'+(x-d).toFixed(1)+'" y="'+(y-d).toFixed(1)+'" width="'+(d*2).toFixed(1)+'" height="'+(d*2).toFixed(1)+'" rx="'+(d*0.45).toFixed(1)+'" transform="rotate('+(nd.t==='b'?-45:45)+' '+x.toFixed(1)+' '+y.toFixed(1)+')" fill="'+col+'"/>');
+      } else {
+        var L = Math.min(cw,ch)*0.46, sw = L*0.62, hw = L*0.52;
+        s.push('<g transform="translate('+x.toFixed(1)+','+y.toFixed(1)+') rotate('+ANGULO[nd.t]+')">');
+        s.push('<path d="M'+(-L).toFixed(1)+',0 L'+(L*0.1).toFixed(1)+',0" stroke="'+col+'" stroke-width="'+sw.toFixed(1)+'" stroke-linecap="round"/>');
+        s.push('<path d="M'+(L*0.98).toFixed(1)+',0 L'+(L*0.1).toFixed(1)+','+hw.toFixed(1)+' L'+(L*0.1).toFixed(1)+',-'+hw.toFixed(1)+' Z" fill="'+col+'"/>');
+        s.push('</g>');
+      }
+    }
+  }
+  s.push('</svg>');
+  return s.join('');
+}
+
+/* ---------------- dibujo: esquema de macramé y trenza ---------------- */
+function svgEsquema(p, nNudos, o){
+  var W = o.w || 84, kh = o.kh || 13, pad = 9;
+  var H = pad*2 + nNudos*kh;
+  var cBase = hiloInfo(p.hilos[0].dmc).x;
+  var cTrab = hiloInfo(p.hilos[p.hilos.length-1].dmc).x;
+  var cx = W/2, m = pad + 2;
+  var s = ['<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" role="img" aria-label="Esquema de '+esc(p.nombre)+'">'];
+  if(p.familia === 'trenza'){
+    var c2 = hiloInfo(p.hilos[1].dmc).x;
+    for(var j=0;j<nNudos;j++){
+      var y = pad + j*kh;
+      var col = (j%2===0) ? cBase : c2;
+      s.push('<path d="M'+m+','+(y+kh)+' C'+(W*0.35)+','+(y+kh*0.2)+' '+(W*0.65)+','+(y+kh*0.9)+' '+(W-m)+','+y+'" fill="none" stroke="'+col+'" stroke-width="'+(kh*0.72)+'" stroke-linecap="round"/>');
+    }
+  } else {
+    s.push('<path d="M'+(cx-3)+','+pad+' L'+(cx-3)+','+(H-pad)+'" stroke="'+cBase+'" stroke-width="3.5" stroke-linecap="round"/>');
+    s.push('<path d="M'+(cx+3)+','+pad+' L'+(cx+3)+','+(H-pad)+'" stroke="'+cBase+'" stroke-width="3.5" stroke-linecap="round"/>');
+    for(var k=0;k<nNudos;k++){
+      var yy = pad + k*kh + kh/2;
+      var conCuenta = (p.id === 'cuentas') && (k % 4 === 3);
+      if(conCuenta){
+        s.push('<circle cx="'+cx+'" cy="'+yy+'" r="'+(kh*0.46)+'" fill="'+cBase+'" stroke="rgba(0,0,0,.3)" stroke-width="1"/>');
+        s.push('<circle cx="'+cx+'" cy="'+yy+'" r="'+(kh*0.16)+'" fill="rgba(0,0,0,.25)"/>');
+      } else {
+        var ang = (p.id === 'espiral') ? (24 * Math.sin(k*0.75)).toFixed(1) : 0;
+        var half = kh*0.44;
+        s.push('<g transform="rotate('+ang+' '+cx+' '+yy+')">');
+        s.push('<path d="M'+m+','+yy+' C'+(cx-14)+','+(yy-half)+' '+(cx+14)+','+(yy-half)+' '+(W-m)+','+yy+
+               ' C'+(cx+14)+','+(yy+half)+' '+(cx-14)+','+(yy+half)+' '+m+','+yy+' Z" fill="'+cTrab+'" stroke="rgba(0,0,0,.18)" stroke-width="1"/>');
+        s.push('</g>');
+      }
+    }
+  }
+  s.push('</svg>');
+  return s.join('');
+}
+
+/* ---------------- dibujo: los nudos paso a paso ---------------- */
+var GRIS = '#8b8498';
+function cord(d, col, w){
+  return '<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="'+(w||9)+'" stroke-linecap="round"/>';
+}
+function puntaFlecha(x, y, ang, col){
+  return '<g transform="translate('+x+','+y+') rotate('+ang+')"><path d="M0,-2 L-5.5,9 L5.5,9 Z" fill="'+col+'"/></g>';
+}
+function envuelta(y, cA, cB){
+  return [
+    cord('M56,'+y+' C70,'+y+' 96,'+(y-5)+' 112,'+(y-10), cA),
+    cord('M112,'+(y-10)+' C124,'+(y-1)+' 110,'+(y+9)+' 84,'+(y+9)+' C70,'+(y+9)+' 62,'+(y+10)+' 56,'+(y+12), cA),
+    cord('M84,'+(y+1)+' L84,'+(y+18), cB)
+  ].join('');
+}
+function svgHitch(etapa, espejo, cA, cB){
+  var g = [];
+  if(etapa === 1){
+    g.push(cord('M84,12 L84,118', cB));
+    g.push(cord('M46,12 L46,42 C46,54 62,50 84,52 C98,53 106,54 112,58', cA));
+    g.push(cord('M112,58 C122,66 118,80 96,84 C84,86 68,84 56,78', cA));
+    g.push(cord('M84,74 L84,96', cB));
+    g.push(cord('M56,78 C52,70 56,60 62,52', cA));
+    g.push(puntaFlecha(63, 50, 16, cA));
+  } else if(etapa === 2){
+    g.push(cord('M84,12 L84,118', cB));
+    g.push(cord('M46,12 L46,40 C46,50 50,56 56,58', cA));
+    g.push(envuelta(58, cA, cB));
+    g.push(cord('M56,70 C68,66 88,72 94,86 L94,118', cA));
+    g.push(cord('M22,76 L22,52', GRIS, 2.5));
+    g.push(puntaFlecha(22, 48, 0, GRIS));
+  } else {
+    g.push(cord('M84,12 L84,60', cB));
+    g.push(cord('M46,12 L46,34 C46,42 50,46 56,47', cA));
+    g.push(envuelta(47, cA, cB));
+    g.push(envuelta(59, cA, cB));
+    g.push(cord('M84,77 C84,90 70,92 64,104 L64,118', cB));
+    g.push(cord('M56,71 C70,68 90,78 96,96 L96,118', cA));
+  }
+  var cuerpo = g.join('');
+  if(espejo) cuerpo = '<g transform="translate(130,0) scale(-1,1)">'+cuerpo+'</g>';
+  return '<svg viewBox="0 0 130 130" role="img" aria-hidden="true">'+cuerpo+'</svg>';
+}
+function svgPlano(etapa, cBase, cTrab){
+  var g = [];
+  var baseCords = cord('M60,12 L60,118', cBase, 7) + cord('M72,12 L72,118', cBase, 7);
+  var izq = 'M26,12 L26,42 C26,56 44,52 66,54 C88,56 104,58 116,66';
+  if(etapa === 1){
+    g.push(baseCords);
+    g.push(cord('M106,12 L106,118', cTrab));
+    g.push(cord(izq, cTrab));
+    g.push(cord('M106,56 L106,80', cTrab));
+    g.push(puntaFlecha(117, 68, 150, cTrab));
+  } else if(etapa === 2){
+    g.push(baseCords);
+    g.push(cord('M26,12 L26,118', cTrab));
+    g.push(cord(izq, cTrab));
+    g.push(cord('M106,56 L106,80', cTrab));
+    g.push(cord('M106,66 C104,80 88,86 66,86 C46,86 32,80 24,72', cTrab));
+    g.push(cord('M60,78 L60,100', cBase, 7));
+    g.push(cord('M72,78 L72,100', cBase, 7));
+    g.push(puntaFlecha(23, 70, 200, cTrab));
+  } else {
+    g.push(baseCords);
+    g.push(cord('M20,50 C40,42 54,68 66,68 C78,68 92,42 112,50', cTrab, 10));
+    g.push(cord('M20,88 C40,96 54,70 66,70 C78,70 92,96 112,88', cTrab, 10));
+    g.push(cord('M20,50 L20,14', cTrab));
+    g.push(cord('M112,50 L112,14', cTrab));
+    g.push(cord('M20,88 L20,118', cTrab));
+    g.push(cord('M112,88 L112,118', cTrab));
+  }
+  return '<svg viewBox="0 0 130 130" role="img" aria-hidden="true">'+g.join('')+'</svg>';
+}
+function svgTrenza(etapa, c1, c2){
+  var g = [];
+  if(etapa === 1){
+    [[22,c1],[52,c2],[82,c1],[112,c2]].forEach(function(p){
+      g.push(cord('M'+p[0]+',12 L'+p[0]+',118', p[1]));
+    });
+    g.push('<path d="M26,34 C40,34 48,44 50,56" fill="none" stroke="'+GRIS+'" stroke-width="2.5" stroke-dasharray="4 4"/>');
+    g.push(puntaFlecha(51, 60, 170, GRIS));
+    g.push('<path d="M108,34 C94,34 86,44 84,56" fill="none" stroke="'+GRIS+'" stroke-width="2.5" stroke-dasharray="4 4"/>');
+    g.push(puntaFlecha(83, 60, 190, GRIS));
+  } else {
+    for(var j=0;j<6;j++){
+      var y = 14 + j*18;
+      g.push(cord('M16,'+(y+16)+' C44,'+(y+2)+' 86,'+(y+14)+' 114,'+y, (j%2===0)?c1:c2, 13));
+    }
+  }
+  return '<svg viewBox="0 0 130 130" role="img" aria-hidden="true">'+g.join('')+'</svg>';
+}
+
+/* ---------------- fichas de nudos ---------------- */
+var ROSA = hiloInfo('3804').x, CRUDO = hiloInfo('712').x, AZUL = hiloInfo('311').x, MOST = hiloInfo('783').x;
+var FICHAS = [
+  {
+    t:'Nudo hacia la derecha', sim:'↘', nota:'También llamado "nudo 4". El hilo que anuda viene de la izquierda y acaba a la derecha.',
+    tiras:[
+      {s:svgHitch(1,false,ROSA,CRUDO), b:'1', x:'Cruza el hilo rosa por encima del crudo formando un 4 y lleva su punta por detrás del crudo.'},
+      {s:svgHitch(2,false,ROSA,CRUDO), b:'2', x:'Saca la punta por el hueco del 4 y tira hacia arriba hasta que el nudo apoye en el de antes.'},
+      {s:svgHitch(3,false,ROSA,CRUDO), b:'3', x:'Da la misma vuelta otra vez: el nudo es doble. El rosa se queda a la derecha y el crudo pasa a la izquierda.'}
+    ],
+    usa:'Es el nudo de las rayas diagonales y de la mitad izquierda del chevron.'
+  },
+  {
+    t:'Nudo hacia la izquierda', sim:'↙', nota:'El mismo nudo en espejo: el hilo que anuda viene de la derecha y acaba a la izquierda.',
+    tiras:[
+      {s:svgHitch(1,true,ROSA,CRUDO), b:'1', x:'Cruza el rosa por encima del crudo formando una P al revés y lleva la punta por detrás.'},
+      {s:svgHitch(2,true,ROSA,CRUDO), b:'2', x:'Saca la punta por el hueco y tira hacia arriba, con la misma fuerza que en el resto.'},
+      {s:svgHitch(3,true,ROSA,CRUDO), b:'3', x:'Repite la vuelta. El rosa queda a la izquierda y el crudo a la derecha.'}
+    ],
+    usa:'Es el nudo de la mitad derecha del chevron y de los tramos de vuelta del zigzag.'
+  },
+  {
+    t:'Nudo doble de ida y vuelta', sim:'→', nota:'Un nudo hacia la derecha seguido de uno hacia la izquierda con la misma pareja. Los hilos acaban donde empezaron.',
+    tiras:[
+      {s:svgHitch(3,false,ROSA,CRUDO), b:'1', x:'Haz un nudo completo hacia la derecha con el hilo rosa.'},
+      {s:svgHitch(3,true,ROSA,CRUDO), b:'2', x:'Con ese mismo hilo rosa, que ahora está a la derecha, haz un nudo hacia la izquierda. Vuelve a su columna.'}
+    ],
+    usa:'Es el nudo del damero y el que se usa para dibujar letras o figuras sin que los colores se corran.'
+  },
+  {
+    t:'Nudo plano', sim:'macramé', nota:'Cuatro hilos: dos quietos en el centro y dos que trabajan por fuera.',
+    tiras:[
+      {s:svgPlano(1,AZUL,MOST), b:'1', x:'El hilo de trabajo izquierdo pasa por delante de los dos del centro y por detrás del de la derecha.'},
+      {s:svgPlano(2,AZUL,MOST), b:'2', x:'El derecho pasa por detrás de los del centro y sale por el bucle que dejó el izquierdo. Tira de los dos a la vez.'},
+      {s:svgPlano(3,AZUL,MOST), b:'3', x:'Eso es medio nudo. Repite empezando por la derecha y queda el nudo plano completo.'}
+    ],
+    usa:'La base del macramé. Alternando el lado de inicio sale plano; sin alternar, sale espiral.'
+  },
+  {
+    t:'Medio nudo', sim:'espiral', nota:'La primera mitad del nudo plano, repetida siempre desde el mismo lado.',
+    tiras:[
+      {s:svgPlano(1,AZUL,MOST), b:'1', x:'Empieza siempre por la izquierda: por delante del centro y por detrás del hilo derecho.'},
+      {s:svgPlano(2,AZUL,MOST), b:'2', x:'Cierra con el derecho por detrás y por el bucle. No hagas la segunda mitad: pasa ya al siguiente nudo.'}
+    ],
+    usa:'La pulsera se va girando sola cada tres o cuatro nudos. Déjala girar y sigue anudando.'
+  }
+];
+
+/* ---------------- cierres ---------------- */
+function svgCierre(tipo){
+  var band = hiloInfo('3845').x, acc = hiloInfo('783').x, gris = '#9a93a6';
+  var s = ['<svg viewBox="0 0 220 96" role="img" aria-hidden="true">'];
+  if(tipo === 'trenzas'){
+    s.push('<rect x="64" y="38" width="92" height="20" rx="5" fill="'+band+'"/>');
+    [0,1,2].forEach(function(i){
+      var y = 42 + i*7;
+      s.push('<path d="M64,'+y+' C46,'+(y-5)+' 32,'+(y+6)+' 12,'+(y-1)+'" fill="none" stroke="'+acc+'" stroke-width="4" stroke-linecap="round"/>');
+      s.push('<path d="M156,'+y+' C174,'+(y-5)+' 188,'+(y+6)+' 208,'+(y-1)+'" fill="none" stroke="'+acc+'" stroke-width="4" stroke-linecap="round"/>');
+    });
+    s.push('<circle cx="10" cy="48" r="5" fill="'+acc+'"/><circle cx="210" cy="48" r="5" fill="'+acc+'"/>');
+  } else if(tipo === 'corredizo'){
+    s.push('<rect x="14" y="30" width="116" height="18" rx="5" fill="'+band+'"/>');
+    s.push('<rect x="90" y="52" width="116" height="18" rx="5" fill="'+band+'"/>');
+    [0,1,2].forEach(function(i){
+      var x = 100 + i*11;
+      s.push('<rect x="'+x+'" y="24" width="8" height="52" rx="4" fill="'+acc+'" stroke="rgba(0,0,0,.2)"/>');
+    });
+    s.push('<circle cx="206" cy="39" r="7" fill="'+acc+'" stroke="rgba(0,0,0,.25)"/>');
+    s.push('<circle cx="14" cy="61" r="7" fill="'+acc+'" stroke="rgba(0,0,0,.25)"/>');
+    s.push('<path d="M150,82 L176,82" stroke="'+gris+'" stroke-width="2.5"/>');
+    s.push('<path d="M176,82 l-6,-4 l0,8 Z" fill="'+gris+'"/>');
+  } else {
+    s.push('<rect x="12" y="38" width="76" height="20" rx="5" fill="'+band+'"/>');
+    s.push('<rect x="132" y="38" width="76" height="20" rx="5" fill="'+band+'"/>');
+    s.push('<path d="M88,48 a10,10 0 1,0 0,-0.1" fill="none" stroke="'+gris+'" stroke-width="5"/>');
+    s.push('<path d="M112,36 q20,12 0,24" fill="none" stroke="'+gris+'" stroke-width="5" stroke-linecap="round"/>');
+    s.push('<path d="M98,48 L114,48" stroke="'+gris+'" stroke-width="5" stroke-linecap="round"/>');
+  }
+  s.push('</svg>');
+  return s.join('');
+}
+var CIERRES_DOC = [
+  {id:'trenzas', t:'Trenzas para atar', d:'El de siempre, y el que no necesita comprar nada.',
+   pasos:['Deja 11 cm de hilo sin anudar a cada punta antes de empezar y al terminar.',
+          'Reparte los hilos de cada punta en tres grupos y trénzalos unos 8 cm.',
+          'Remata cada trenza con un nudo simple y recorta a 1 cm.',
+          'Se ata a la muñeca con un lazo, así que admite cualquier medida.']},
+  {id:'corredizo', t:'Nudo corredizo', d:'Ajustable, y el que mejor queda en macramé.',
+   pasos:['Cruza las dos puntas de la pulsera en paralelo, solapadas unos 3 cm.',
+          'Con un cordón aparte de 30 cm, haz 4 o 5 nudos planos alrededor de las dos puntas a la vez.',
+          'Remata ese cordón y recorta: los nudos se deslizan sobre las puntas.',
+          'Pon una cuenta o un nudo gordo en cada punta para que el cierre no se salga.']},
+  {id:'broche', t:'Broche de pinza', d:'El acabado más limpio, y el más rápido de poner.',
+   pasos:['Corta las puntas en recto, dejando 1 cm de margen después del último nudo.',
+          'Mete las puntas en la pinza del broche y ciérrala con un alicate.',
+          'En cordón encerado, pasa antes un poco de pegamento o quema la punta con cuidado.',
+          'Mide tu broche: si pasa de 1,5 cm, resta la diferencia a la banda.']}
+];
+
+/* ---------------- interfaz ---------------- */
+function fmt(n, d){
+  d = (d == null) ? 1 : d;
+  return n.toFixed(d).replace('.', ',');
+}
+function cm(n, d){ return fmt(n, d) + ' cm'; }
+function $(id){ return document.getElementById(id); }
+
+var est = {muneca:16, holgura:1.5, cierre:'trenzas', hilo:'m6', patron:'chevron', paso:0};
+
+function motivoDe(p){
+  if(p.familia !== 'grafico') return 0;
+  return (p.ciclo > 2) ? p.ciclo : (periodo(p) || p.ciclo);
+}
+function filasMostradas(p){
+  var m = motivoDe(p), k = 1;
+  while(m * k < 16) k++;
+  while(m * k > 26 && k > 1) k--;
+  return m * k;
+}
+function chip(color, texto){
+  return '<span class="nudo-chip"><b style="background:'+hiloInfo(color).x+'"></b><em>'+texto+'</em></span>';
+}
+
+function pintaMuestrario(){
+  var codigos = ['3804','3845','783','712','937','351','552','311','310','B5200'];
+  var alturas = [100,78,92,64,86,70,96,74,88,60];
+  $('muestrario').innerHTML = codigos.map(function(c, i){
+    return '<i style="background:'+hiloInfo(c).x+';height:'+alturas[i]+'%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)"></i>';
+  }).join('');
+}
+
+function pintaSelectores(){
+  $('cierre').innerHTML = Object.keys(CIERRES).map(function(k){
+    return '<option value="'+k+'"'+(k===est.cierre?' selected':'')+'>'+esc(CIERRES[k].n)+'</option>';
+  }).join('');
+  $('hilo').innerHTML = Object.keys(TIPOS).map(function(k){
+    return '<option value="'+k+'"'+(k===est.hilo?' selected':'')+'>'+esc(TIPOS[k].n)+'</option>';
+  }).join('');
+}
+
+function pintaCatalogo(){
+  $('catalogo').innerHTML = PATRONES.map(function(p){
+    var mini = (p.familia === 'grafico')
+      ? svgGrafico(p, simular(p, 14), {cw:9, ch:8, pad:4, simple:true, barra:false})
+      : svgEsquema(p, 8, {w:54, kh:13});
+    var puntos = [1,2,3].map(function(i){ return '<i class="'+(i<=p.dif?'on':'')+'"></i>'; }).join('');
+    return '<li><button type="button" class="tarjeta" data-id="'+p.id+'" aria-pressed="'+(p.id===est.patron)+'">'+
+      '<span class="mini">'+mini+'</span>'+
+      '<h3>'+esc(p.nombre)+'</h3>'+
+      '<span class="meta"><span>'+esc(p.alias)+'</span><span class="puntos" title="Dificultad '+p.dif+' de 3">'+puntos+'</span></span>'+
+      '<span class="meta" style="color:var(--tinta-3)">'+p.hilos.length+' hilos</span>'+
+      '</button></li>';
+  }).join('');
+  Array.prototype.forEach.call($('catalogo').querySelectorAll('.tarjeta'), function(b){
+    b.addEventListener('click', function(){
+      est.patron = b.getAttribute('data-id');
+      est.paso = 0;
+      pintaTodo();
+      $('panel').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+}
+
+function pintaNudos(){
+  $('lista-nudos').innerHTML = FICHAS.map(function(f){
+    var tiras = f.tiras.map(function(t){
+      return '<figure class="tira">'+t.s+'<figcaption><b>Paso '+t.b+'</b>'+esc(t.x)+'</figcaption></figure>';
+    }).join('');
+    return '<article class="nudo-ficha"><h3>'+esc(f.t)+' <code>'+esc(f.sim)+'</code></h3>'+
+      '<p>'+esc(f.nota)+'</p><div class="tiras">'+tiras+'</div>'+
+      '<p class="usa">'+esc(f.usa)+'</p></article>';
+  }).join('');
+}
+
+function pintaCierres(){
+  $('lista-cierres').innerHTML = CIERRES_DOC.map(function(c){
+    return '<article class="cierre">'+svgCierre(c.id)+
+      '<h3>'+esc(c.t)+'</h3><p class="nota" style="color:var(--tinta-2);font-size:.9rem">'+esc(c.d)+'</p>'+
+      '<ol>'+c.pasos.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join('')+'</ol>'+
+      '<p class="usa" style="font-size:.82rem;color:var(--tinta-3);margin-top:12px;padding-top:10px;border-top:1px solid var(--linea)">Reserva '+cm(CIERRES[c.id].reduce)+' de la banda y '+CIERRES[c.id].extra+' cm de más en cada hilo.</p>'+
+      '</article>';
+  }).join('');
+}
+
+function pintaPanel(){
+  var p = patronPorId(est.patron);
+  var c = calcular(p, est);
+  var esGrafico = (p.familia === 'grafico');
+  var total = esGrafico ? filasMostradas(p) : p.pasos.length;
+  if(est.paso > total - 1) est.paso = total - 1;
+  if(est.paso < 0) est.paso = 0;
+
+  $('p-nombre').textContent = p.nombre;
+  $('p-tipo').textContent = esGrafico ? 'Gráfico de nudos' : 'Esquema';
+
+  /* gráfico o esquema */
+  if(esGrafico){
+    var filas = simular(p, total);
+    $('p-grafico').innerHTML = svgGrafico(p, filas, {cw:22, ch:18, pad:8, barra:true, activa:est.paso});
+    var usados = {};
+    p.hilos.forEach(function(x){ usados[x.dmc] = true; });
+    $('p-leyenda').innerHTML = Object.keys(usados).map(function(k){
+      return '<span><b style="background:'+hiloInfo(k).x+'"></b>'+esc(hiloInfo(k).n)+' <code>DMC '+esc(k)+'</code></span>';
+    }).join('') + '<span style="color:var(--tinta-3)">Arriba, el orden en que van los hilos antes del primer nudo.</span>';
+    $('p-cuenta').textContent = 'Fila ' + (est.paso + 1) + ' de ' + total;
+    $('p-intro').textContent = p.intro + ' El dibujo se repite cada ' + motivoDe(p) + ' filas.';
+  } else {
+    $('p-grafico').innerHTML = '<div style="display:flex;gap:14px;justify-content:center;align-items:flex-start">'+
+      svgEsquema(p, 10, {w:76, kh:15}) + '</div>';
+    $('p-leyenda').innerHTML = p.hilos.map(function(x, i){
+      return (i === 0 || i === p.hilos.length - 1)
+        ? '<span><b style="background:'+hiloInfo(x.dmc).x+'"></b>'+(x.base?'Base':'Trabajo')+': '+esc(hiloInfo(x.dmc).n)+' <code>DMC '+esc(x.dmc)+'</code></span>'
+        : '';
+    }).join('');
+    $('p-cuenta').textContent = 'Paso ' + (est.paso + 1) + ' de ' + total;
+    $('p-intro').textContent = p.intro;
+  }
+
+  /* tabla de hilo */
+  $('p-resumen-hilo').textContent = 'Para una banda de ' + cm(c.banda) + ' con ' + CIERRES[est.cierre].n.toLowerCase() + '.';
+  var conMadejas = TIPOS[est.hilo].madeja > 0;
+  $('p-tabla').innerHTML = c.grupos.map(function(g){
+    var hi = hiloInfo(g.dmc);
+    return '<tr>'+
+      '<td><span class="hilo-celda"><b style="background:'+hi.x+'"></b><span>'+esc(hi.n)+(g.base?' <span class="rol">base</span>':'')+'</span></span></td>'+
+      '<td><small style="font-family:var(--dato);color:var(--tinta-3)">DMC '+esc(g.dmc)+'</small></td>'+
+      '<td class="n">'+g.corte+' cm</td>'+
+      '<td class="n">×'+g.cuantos+'</td>'+
+      '<td class="n">'+fmt(g.total/100, 2).replace(',00','') +' m'+(conMadejas && g.madejas ? ' <small style="color:var(--tinta-3)">('+g.madejas+' madeja'+(g.madejas>1?'s':'')+')</small>' : '')+'</td>'+
+      '</tr>';
+  }).join('');
+  $('p-tabla-pie').innerHTML = '<tr><td colspan="3">Hilo total</td><td class="n">'+c.nHilos+' hilos</td><td class="n">'+fmt(c.totalCm/100, 2)+' m</td></tr>';
+
+  var avisos = [];
+  if(c.cordon) avisos.push('Más 1 cordón aparte de ' + c.cordon + ' cm para el nudo corredizo.');
+  if(p.multBase) avisos.push('Los hilos de base casi no se gastan: van rectos por el centro y solo necesitan el largo de la pulsera.');
+  if(p.id === 'cuentas') avisos.push('Calcula unas ' + Math.round(c.banda / 1.5) + ' cuentas, una cada 1,5 cm.');
+  if(est.hilo === 'alg2' && p.familia === 'grafico') avisos.push('Con cordón de 2 mm el gráfico sale mucho más grande: salen menos filas y el dibujo se repite menos veces.');
+  $('p-aviso').innerHTML = avisos.length ? esc(avisos.join(' ')) : '';
+  $('p-aviso').hidden = !avisos.length;
+
+  /* paso a paso */
+  var lis = [];
+  if(esGrafico){
+    var fs = simular(p, total);
+    fs.forEach(function(nudos, r){
+      var cuentas = {};
+      nudos.forEach(function(nd){ cuentas[nd.t] = (cuentas[nd.t] || 0) + 1; });
+      var resumen = Object.keys(cuentas).map(function(t){
+        return cuentas[t] + ' ' + (cuentas[t] > 1 ? NOMBRE_NUDO[t].replace('nudo','nudos') : NOMBRE_NUDO[t]);
+      }).join(' y ');
+      var chips = nudos.map(function(nd){
+        return chip(nd.color, (nd.i+1) + '·' + (nd.i+2) + ' ' + FLECHA[nd.t]);
+      }).join(' ');
+      lis.push('<li data-i="'+r+'" class="'+(r===est.paso?'activa':'')+'"><span class="ix">F'+(r+1)+'</span>'+
+        '<span>'+esc(resumen)+'<br>'+chips+'</span></li>');
+    });
+    lis.push('<li data-i="-1"><span class="ix">···</span><span>Repite el gráfico desde la fila 1 hasta completar unas <b class="num">'+c.filas+'</b> filas, que son los '+cm(c.banda)+' de banda.</span></li>');
+  } else {
+    p.pasos.forEach(function(txt, i){
+      lis.push('<li data-i="'+i+'" class="'+(i===est.paso?'activa':'')+'"><span class="ix">'+(i+1)+'</span><span>'+esc(txt)+'</span></li>');
+    });
+  }
+  $('p-filas').innerHTML = lis.join('');
+  Array.prototype.forEach.call($('p-filas').querySelectorAll('li[data-i]'), function(li){
+    var i = parseInt(li.getAttribute('data-i'), 10);
+    if(i < 0) return;
+    li.addEventListener('click', function(){ est.paso = i; pintaPanel(); });
+  });
+  $('b-ant').disabled = (est.paso <= 0);
+  $('b-sig').disabled = (est.paso >= total - 1);
+
+  /* resumen de medidas */
+  $('r-final').textContent = cm(c.largoFinal);
+  $('r-banda').textContent = cm(c.banda);
+  $('r-cierre').textContent = cm(c.reserva);
+  $('r-filas').textContent = esGrafico ? String(c.filas) : (String(c.filas) + ' nudos');
+
+  /* fórmula */
+  var tipo = TIPOS[est.hilo], ci = CIERRES[est.cierre];
+  var trabajo = c.hilos.filter(function(x){ return !x.base; })[0] || c.hilos[0];
+  $('formula').innerHTML =
+    'largo final  = muñeca <b>'+fmt(est.muneca)+'</b> + holgura <b>'+fmt(est.holgura)+'</b> = <b>'+fmt(c.largoFinal)+' cm</b><br>'+
+    'banda        = '+fmt(c.largoFinal)+' − '+fmt(ci.reduce)+' del cierre = <b>'+fmt(c.banda)+' cm</b><br>'+
+    'por hilo     = '+fmt(c.banda)+' × '+fmt(trabajo.mult)+' del patrón × '+fmt(tipo.f, 2)+' del hilo + '+ci.extra+' del cierre = '+Math.round(trabajo.exacto)+' cm<br>'+
+    '             + 10 % de margen, redondeado a 5 cm → <b>'+trabajo.corte+' cm</b><br>'+
+    'total        = '+c.nHilos+' hilos → <b>'+fmt(c.totalCm/100, 2)+' m</b>';
+
+  $('cierre-nota').textContent = ci.nota;
+  $('hilo-nota').textContent = tipo.nota;
+  Array.prototype.forEach.call($('catalogo').querySelectorAll('.tarjeta'), function(b){
+    b.setAttribute('aria-pressed', String(b.getAttribute('data-id') === est.patron));
+  });
+}
+
+function pintaTodo(){ pintaPanel(); }
+
+function leeCampos(){
+  var m = parseFloat($('muneca').value);
+  var h = parseFloat($('holgura').value);
+  est.muneca = isFinite(m) ? Math.min(26, Math.max(8, m)) : 16;
+  est.holgura = isFinite(h) ? Math.min(4, Math.max(0, h)) : 1.5;
+  est.cierre = $('cierre').value;
+  est.hilo = $('hilo').value;
+  pintaTodo();
+}
+
+pintaMuestrario();
+pintaSelectores();
+pintaCatalogo();
+pintaNudos();
+pintaCierres();
+pintaTodo();
+
+['muneca','holgura','cierre','hilo'].forEach(function(id){
+  $(id).addEventListener('input', leeCampos);
+  $(id).addEventListener('change', leeCampos);
+});
+$('b-ant').addEventListener('click', function(){ est.paso--; pintaPanel(); });
+$('b-sig').addEventListener('click', function(){ est.paso++; pintaPanel(); });
+</script>
