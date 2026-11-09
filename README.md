@@ -6,13 +6,27 @@ el cálculo de cuánto hilo hay que cortar para el largo de muñeca que se quier
 
 ## Qué incluye
 
-- **10 patrones.** Cinco con gráfico de nudos generado por código (rayas
-  diagonales, chevron, chevron ancho, zigzag, rombos, damero) y cuatro de
-  macramé y trenza explicados con dibujos (trenza de 4 hilos, nudo plano,
-  espiral de medio nudo, nudo plano con cuentas).
+- **11 patrones.** Siete con gráfico de nudos generado por código (rayas
+  diagonales, chevron, chevron ancho, zigzag, rombos, damero y «Ornamento», de
+  14 hilos y 38 filas) y cuatro de macramé y trenza explicados con dibujos
+  (trenza de 4 hilos, nudo plano, espiral de medio nudo, nudo plano con
+  cuentas).
+- **Gráfico en notación de patrón.** Cada nudo es un círculo del color del hilo
+  que anuda, con una flecha que indica el sentido; entre los nudos se dibuja el
+  recorrido real de cada hilo, con las filas numeradas a ambos lados y las
+  letras de los hilos arriba y abajo. Encima va una vista de cómo queda tejida.
 - **Paso a paso.** Para los patrones de gráfico, la secuencia de nudos de cada
   fila se genera simulando el patrón: qué pareja de hilos se anuda, en qué
   sentido y con qué color. Se puede recorrer fila a fila.
+
+### Sobre el patrón «Ornamento»
+
+Está transcrito de un gráfico de referencia. Los colores de los 247 nudos se
+leyeron de la imagen y los tipos de nudo se dedujeron resolviendo qué secuencia
+los reproduce, imponiendo la simetría izquierda-derecha del dibujo. La
+transcripción se comprueba simulando el patrón: los 247 nudos salen del color
+correcto, los hilos acaban en el mismo orden en que empiezan y los dos hilos de
+los bordes nunca se mueven de su sitio, igual que en el original.
 - **Los nudos.** Diagramas SVG del nudo hacia la derecha, hacia la izquierda,
   el doble de ida y vuelta, el nudo plano y el medio nudo.
 - **Cierres.** Trenzas para atar, nudo corredizo ajustable y broche de pinza,
