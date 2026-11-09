@@ -238,7 +238,8 @@ ol.filas li.activa .ix{color:var(--acento)}
 .nudo-ficha h3{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}
 .nudo-ficha h3 code{font-family:var(--dato);font-size:.75rem;color:var(--tinta-3);font-weight:400}
 .tiras{display:flex;gap:10px;margin:14px 0;overflow-x:auto;padding-bottom:4px}
-.tira{flex:1 1 0;min-width:96px;text-align:center}
+.tira{flex:1 1 0;min-width:96px;margin:0;text-align:center}
+figure{margin:0}
 .tira svg{display:block;width:100%;max-width:160px;height:auto;margin:0 auto;background:var(--papel);border:1px solid var(--linea);border-radius:8px}
 .tira figcaption{font-size:.78rem;color:var(--tinta-2);margin-top:6px;line-height:1.35;text-align:left}
 .tira figcaption b{font-family:var(--dato);font-size:.72rem;color:var(--acento);display:block}
@@ -250,6 +251,45 @@ ol.filas li.activa .ix{color:var(--acento)}
 .cierre{background:var(--papel-2);border:1px solid var(--linea);border-radius:var(--radio);padding:16px;min-width:0}
 .cierre svg{display:block;width:100%;height:auto;background:var(--papel);border:1px solid var(--linea);border-radius:8px;margin-bottom:12px}
 .cierre ol{margin:10px 0 0;padding-left:1.2em;font-size:.9rem;color:var(--tinta-2);display:grid;gap:5px}
+
+/* ---------- pestañas y talleres ---------- */
+.pestanas{display:flex;flex-wrap:wrap;gap:4px;margin-top:22px;padding:4px;border:1px solid var(--linea);border-radius:11px;background:var(--papel);width:fit-content;max-width:100%}
+.pest{font:600 .88rem/1 var(--display);color:var(--tinta-2);background:none;border:0;border-radius:8px;padding:9px 14px;cursor:pointer;white-space:nowrap}
+.pest:hover{color:var(--acento)}
+.pest[aria-selected=true]{background:var(--papel-2);color:var(--tinta);box-shadow:var(--sombra)}
+#v-pixel,#v-leer{margin-top:18px}
+.taller{display:grid;gap:20px;margin-top:16px}
+@media(min-width:820px){.taller{grid-template-columns:minmax(0,320px) minmax(0,1fr);align-items:start}}
+.taller-mandos{display:grid;gap:14px;min-width:0;background:var(--papel-2);border:1px solid var(--linea);border-radius:var(--radio);padding:16px}
+.taller-lienzo{min-width:0;background:var(--papel-2);border:1px solid var(--linea);border-radius:var(--radio);padding:12px;overflow:auto;max-height:min(74vh,700px)}
+.taller-lienzo canvas{display:block;width:100%;height:auto;image-rendering:pixelated;border-radius:6px;cursor:crosshair;touch-action:none}
+#im-lienzo{cursor:default}
+.campos.dos{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+.botonera{display:flex;flex-wrap:wrap;gap:8px}
+button.btn.chico{font-size:.78rem;padding:6px 10px}
+.marca{display:flex;align-items:center;gap:7px;font-size:.84rem;color:var(--tinta-2);cursor:pointer}
+.marca input{accent-color:var(--acento);width:16px;height:16px}
+input[type=file]{font:600 .82rem/1.3 var(--display);color:var(--tinta-2);max-width:100%}
+input[type=file]::file-selector-button{font:600 .82rem/1 var(--display);color:var(--tinta);background:var(--papel);border:1px solid var(--linea-2);border-radius:7px;padding:7px 11px;margin-right:9px;cursor:pointer}
+.paleta-px{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.tinta-caja{position:relative;display:inline-flex;border-radius:8px;padding:2px;border:2px solid transparent}
+.tinta-caja.sel{border-color:var(--acento)}
+.tinta-caja .quita{position:absolute;top:-7px;right:-7px;width:17px;height:17px;border-radius:50%;border:1px solid var(--linea-2);
+  background:var(--papel-2);color:var(--tinta-2);font-size:11px;line-height:1;cursor:pointer;padding:0}
+input[type=color]{width:30px;height:30px;padding:0;border:1px solid var(--linea-2);border-radius:6px;background:none;cursor:pointer}
+input[type=color]::-webkit-color-swatch-wrapper{padding:2px}
+input[type=color]::-webkit-color-swatch{border:none;border-radius:4px}
+input[type=color]::-moz-color-swatch{border:none;border-radius:4px}
+.leyenda-hilo{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;color:var(--tinta-2)}
+.leyenda-hilo input[type=color]{width:20px;height:20px;border-radius:5px}
+.tira-fila{display:block;width:100%;max-width:230px;height:9px;margin-top:5px;border-radius:3px;overflow:hidden}
+.tiras.tres{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;overflow:visible;align-items:start}
+.tiras.tres .tira{min-width:0}
+.tiras.tres figcaption{font-size:.74rem}
+.tira{position:relative}
+.paso-n{position:absolute;top:-7px;left:-7px;z-index:1;width:20px;height:20px;border-radius:50%;
+  background:var(--acento);color:var(--acento-sobre);font:700 .72rem/20px var(--dato);text-align:center}
+.nudo-ficha h3 code{white-space:nowrap;color:var(--tinta-3)}
 
 /* ---------- formula ---------- */
 .formula{
@@ -338,7 +378,67 @@ ul.lista strong{color:var(--tinta);font-weight:600}
       <h2>Elige un patrón</h2>
     </div>
     <p class="sub">Los cinco primeros se leen en el gráfico de nudos: cada símbolo es un nudo doble y el color del símbolo es el hilo que anuda. Los cuatro últimos son de macramé y trenza, y se explican con dibujos.</p>
-    <ul class="rejilla" id="catalogo"></ul>
+    <div class="pestanas" role="tablist">
+      <button type="button" class="pest" data-vista="catalogo" aria-selected="true">Catálogo</button>
+      <button type="button" class="pest" data-vista="pixel" aria-selected="false">Diseñar en píxeles</button>
+      <button type="button" class="pest" data-vista="leer" aria-selected="false">Leer un gráfico</button>
+    </div>
+
+    <div id="v-catalogo"><ul class="rejilla" id="catalogo"></ul></div>
+
+    <div id="v-pixel" hidden>
+      <p class="sub">Dibuja celda a celda, o sube una imagen y se ajusta a la rejilla. Cada celda es un nudo. Al crear el patrón se calcula qué hilo tiene que anudar en cada uno para que salga ese dibujo.</p>
+      <div class="taller">
+        <div class="taller-mandos">
+          <div class="campos dos">
+            <label class="campo"><span>Hilos de ancho</span><input type="number" id="px-ancho" min="4" max="30" value="14"></label>
+            <label class="campo"><span>Filas de alto</span><input type="number" id="px-alto" min="6" max="90" value="24"></label>
+          </div>
+          <div class="campo"><span>Colores</span><div class="paleta-px" id="px-paleta"></div>
+            <small>Toca un color para pintar con él. El cuadrito abre el selector.</small></div>
+          <div class="campo"><span>Partir de una imagen</span>
+            <input type="file" id="px-archivo" accept="image/*">
+            <label class="marca"><input type="checkbox" id="px-auto" checked> Sacar los colores de la imagen</label>
+          </div>
+          <div class="botonera">
+            <button type="button" class="btn" id="px-limpiar">Vaciar</button>
+            <button type="button" class="btn" id="px-espejo">Simetría</button>
+            <button type="button" class="btn primario" id="px-crear">Crear el patrón</button>
+          </div>
+          <p class="nota" id="px-aviso">Dibuja algo y pulsa «Crear el patrón».</p>
+        </div>
+        <div class="taller-lienzo"><canvas id="px-lienzo" aria-label="Lienzo de píxeles"></canvas></div>
+      </div>
+    </div>
+
+    <div id="v-leer" hidden>
+      <p class="sub">Sube una foto o una captura de un gráfico de nudos. Se busca la rejilla, se leen los colores de cada nudo y se deduce en qué sentido va cada uno. Repasa el encaje antes de leerlo.</p>
+      <div class="taller">
+        <div class="taller-mandos">
+          <div class="campo"><span>Foto del gráfico</span><input type="file" id="im-archivo" accept="image/*"></div>
+          <div id="im-ajustes" hidden>
+            <div class="campos dos">
+              <label class="campo"><span>Hilos</span><input type="number" id="im-hilos" min="3" max="40"></label>
+              <label class="campo"><span>Filas</span><input type="number" id="im-filas" min="2" max="200"></label>
+              <label class="campo"><span>Borde izquierdo</span><input type="number" id="im-x0" step="1"></label>
+              <label class="campo"><span>Borde superior</span><input type="number" id="im-y0" step="1"></label>
+              <label class="campo"><span>Ancho de carril</span><input type="number" id="im-dx" step="0.5"></label>
+              <label class="campo"><span>Alto de fila</span><input type="number" id="im-dy" step="0.5"></label>
+            </div>
+            <label class="marca"><input type="checkbox" id="im-impar"> La primera fila empieza desplazada</label>
+            <label class="marca"><input type="checkbox" id="im-sim" checked> El dibujo es simétrico</label>
+            <label class="marca"><input type="checkbox" id="im-cierra" checked> Los hilos vuelven a su orden al final</label>
+            <p class="nota" id="im-calidad"></p>
+          </div>
+          <div class="botonera">
+            <button type="button" class="btn" id="im-detectar">Volver a detectar</button>
+            <button type="button" class="btn primario" id="im-leer">Leer el patrón</button>
+          </div>
+          <p class="nota" id="im-aviso">Funciona mejor con una captura de pantalla recortada y vista de frente.</p>
+        </div>
+        <div class="taller-lienzo"><canvas id="im-lienzo" aria-label="Vista de la imagen con la rejilla detectada"></canvas></div>
+      </div>
+    </div>
 
     <div class="panel" id="panel">
       <div class="carta-grafico">
@@ -474,7 +574,13 @@ var HILOS = {
   '3052':{n:'Verde salvia',x:'#788674'},
   'B5200':{n:'Blanco',     x:'#fbfaf7'}
 };
-function hiloInfo(c){ return HILOS[c] || {n:c, x:'#888'}; }
+function hiloInfo(c){
+  if(HILOS[c]) return HILOS[c];
+  if(/^#[0-9a-f]{6}$/i.test(c)) return {n:'Color leído', x:c, libre:true};
+  return {n:c, x:'#888888'};
+}
+/* color con el que se pinta: el del hilo, o el que haya elegido quien usa la página */
+function tono(c){ return (est && est.paleta && est.paleta[c]) || hiloInfo(c).x; }
 
 /* ---------------- tipos de hilo ---------------- */
 var TIPOS = {
@@ -620,7 +726,8 @@ var PATRONES = [
   }
 ];
 function patronPorId(id){
-  for(var i=0;i<PATRONES.length;i++) if(PATRONES[i].id===id) return PATRONES[i];
+  var todos = (typeof PROPIOS !== 'undefined') ? PROPIOS.concat(PATRONES) : PATRONES;
+  for(var i=0;i<todos.length;i++) if(todos[i].id===id) return todos[i];
   return PATRONES[0];
 }
 
@@ -674,56 +781,201 @@ function periodo(p, max){
   return null;
 }
 function periodoVisual(p){
+  if(p.familia === 'alfa') return p.alfa.celdas.length;
   if(p.filas) return p.filas.length;
   if(p.familia !== 'grafico') return 8;
   return (p.ciclo > 2) ? p.ciclo : (periodo(p) || p.ciclo);
 }
 
-/* ---------------- cálculo de hilo ---------------- */
+/* ---------------- cálculo de hilo ----------------
+   Para los patrones de gráfico y alfa se cuentan los nudos que hace cada
+   hilo: un nudo doble gasta unos 2 cm de hilo con mouliné de 6 cabos. Para
+   macramé y trenza se usa un multiplicador sobre el largo de la banda. */
 function redondeaArriba(cm, a){ a = a || 5; return Math.ceil(cm / a) * a; }
+var CM_POR_NUDO = 2.0;
 
 function calcular(p, est){
-  var cierre = CIERRES[est.cierre];
-  var tipo = TIPOS[est.hilo];
+  var cierre = CIERRES[est.cierre], tipo = TIPOS[est.hilo];
   var largoFinal = est.muneca + est.holgura;
   var banda = Math.max(2, largoFinal - cierre.reduce);
   var densidad = (p.familia === 'macrame') ? tipo.filas * 0.62
                : (p.familia === 'trenza')  ? tipo.filas * 0.8
                : tipo.filas;
-  var filas = Math.round(banda * densidad);
+  var filas = Math.max(1, Math.round(banda * densidad));
+  var kcm = CM_POR_NUDO * tipo.f;
+  var hilos = [];
 
-  var hilos = p.hilos.map(function(x){
-    var mult = (x.base && p.multBase) ? p.multBase : p.mult;
-    var exacto = banda * mult * tipo.f + cierre.extra;
-    if(x.base && p.multBase) exacto = banda * mult + cierre.extra;
-    return {
-      dmc:x.dmc, base:!!x.base, mult:mult,
-      exacto:exacto,
-      corte:redondeaArriba(exacto * 1.1, 5)
-    };
-  });
+  if(p.familia === 'grafico'){
+    var cnt = nudosPorHilo(p, filas).porHilo;
+    p.hilos.forEach(function(x, i){
+      hilos.push({dmc:x.dmc, base:false, nudos:cnt[i],
+                  exacto: banda + cnt[i]*kcm + cierre.extra});
+    });
+  } else if(p.familia === 'alfa'){
+    var A = p.alfa, n = A.fondo.length;
+    var fil = simularAlfa(p, filas);
+    var porFondo = new Array(n).fill(0);
+    var porTrab = {}, pasiva = {};
+    fil.forEach(function(f){
+      f.nudos.forEach(function(k, j){
+        if(k.trabaja){ porTrab[f.trabajo] = (porTrab[f.trabajo]||0) + 1; }
+        else { porFondo[j]++; pasiva[f.trabajo] = (pasiva[f.trabajo]||0) + 1; }
+      });
+    });
+    A.fondo.forEach(function(c, j){
+      hilos.push({dmc:c, base:true, nudos:porFondo[j],
+                  exacto: banda + porFondo[j]*kcm + cierre.extra});
+    });
+    Object.keys(porTrab).forEach(function(c){
+      var activos = porTrab[c], pasivos = pasiva[c] || 0;
+      hilos.push({dmc:c, base:false, nudos:activos,
+                  exacto: banda*0.3 + activos*kcm + pasivos*kcm*0.45 + cierre.extra});
+    });
+  } else {
+    p.hilos.forEach(function(x){
+      var mult = (x.base && p.multBase) ? p.multBase : p.mult;
+      var ex = (x.base && p.multBase) ? banda*mult + cierre.extra
+                                      : banda*mult*tipo.f + cierre.extra;
+      hilos.push({dmc:x.dmc, base:!!x.base, mult:mult, exacto:ex});
+    });
+  }
+  hilos.forEach(function(hl){ hl.corte = redondeaArriba(hl.exacto * 1.1, 5); });
 
   var grupos = [];
   hilos.forEach(function(hl){
     var g = null;
-    for(var i=0;i<grupos.length;i++){
-      if(grupos[i].dmc===hl.dmc && grupos[i].base===hl.base){ g=grupos[i]; break; }
-    }
-    if(!g){ g={dmc:hl.dmc, base:hl.base, corte:hl.corte, mult:hl.mult, cuantos:0}; grupos.push(g); }
+    for(var i=0;i<grupos.length;i++) if(grupos[i].dmc===hl.dmc && grupos[i].base===hl.base){ g=grupos[i]; break; }
+    if(!g){ g = {dmc:hl.dmc, base:hl.base, corte:0, nudos:0, cuantos:0}; grupos.push(g); }
     g.cuantos++;
+    g.nudos += (hl.nudos || 0);
+    if(hl.corte > g.corte) g.corte = hl.corte;
   });
   grupos.forEach(function(g){
     g.total = g.corte * g.cuantos;
-    g.madejas = TIPOS[est.hilo].madeja ? Math.ceil(g.total / TIPOS[est.hilo].madeja) : 0;
+    g.madejas = tipo.madeja ? Math.ceil(g.total / tipo.madeja) : 0;
   });
-
   var totalCm = grupos.reduce(function(s,g){ return s + g.total; }, 0) + (cierre.cordon || 0);
+  return {largoFinal:largoFinal, banda:banda, reserva:cierre.reduce, filas:filas,
+          kcm:kcm, hilos:hilos, grupos:grupos, totalCm:totalCm,
+          cordon:cierre.cordon || 0, nHilos:hilos.length};
+}
+
+/* ---------------- patrones alfa ----------------
+   Un hilo de trabajo cruza la fila entera anudando sobre cada hilo de fondo.
+   En cada celda se elige quién anuda: si anuda el de trabajo se ve su color,
+   si anuda el de fondo se ve el del fondo. El hilo de trabajo siempre acaba
+   pasando al otro lado, así que todos los nudos de una fila van en el mismo
+   sentido: hacia la derecha en las filas impares y hacia la izquierda en las pares. */
+
+function simularAlfa(p, nFilas){
+  var A = p.alfa, n = A.fondo.length, filas = [];
+  for(var r=0; r<nFilas; r++){
+    var rr = r % A.celdas.length;
+    var derecha = (r % 2 === 0);
+    var trab = A.trabajo[rr], nudos = [];
+    for(var j=0; j<n; j++){
+      var c = A.celdas[rr][j];
+      var esTrabajo = (c === trab);
+      nudos.push({j:j, t: derecha ? (esTrabajo ? 'f' : 'b') : (esTrabajo ? 'b' : 'f'),
+                  color:c, trabaja:esTrabajo});
+    }
+    filas.push({derecha:derecha, trabajo:trab, nudos:nudos});
+  }
+  return filas;
+}
+
+/* Ajusta un dibujo de celdas al alcance de la técnica: cada celda solo puede
+   mostrar el color del hilo de fondo de su columna o el del hilo de trabajo
+   de su fila. Elige ambos para que coincidan el mayor número de celdas. */
+function ajustaAlfa(celdas){
+  var filasN = celdas.length, n = celdas[0].length;
+  function moda(lista){
+    var c = {}, mejor = null, max = -1;
+    lista.forEach(function(v){ c[v] = (c[v]||0)+1; if(c[v] > max){ max = c[v]; mejor = v; } });
+    return mejor;
+  }
+  var fondo = [];
+  for(var j=0;j<n;j++){
+    var col = [];
+    for(var r=0;r<filasN;r++) col.push(celdas[r][j]);
+    fondo.push(moda(col));
+  }
+  var trabajo = [], fallos = [], aciertos = 0, total = filasN*n;
+  for(var r=0;r<filasN;r++){
+    var resto = [];
+    for(var j=0;j<n;j++) if(celdas[r][j] !== fondo[j]) resto.push(celdas[r][j]);
+    trabajo.push(resto.length ? moda(resto) : (fondo[0]));
+  }
+  /* segunda pasada: con el trabajo ya elegido, reconsidera cada fondo */
+  for(var j=0;j<n;j++){
+    var cuenta = {};
+    for(var r=0;r<filasN;r++){
+      var c = celdas[r][j];
+      if(c !== trabajo[r]) cuenta[c] = (cuenta[c]||0)+1;
+    }
+    var mejor = fondo[j], max = -1;
+    Object.keys(cuenta).forEach(function(k){ if(cuenta[k] > max){ max = cuenta[k]; mejor = k; } });
+    if(max > 0) fondo[j] = mejor;
+  }
+  var ajustadas = [];
+  for(var r=0;r<filasN;r++){
+    var fila = [];
+    for(var j=0;j<n;j++){
+      var c = celdas[r][j];
+      if(c === trabajo[r] || c === fondo[j]){ aciertos++; fila.push(c); }
+      else { fallos.push([r,j]); fila.push(fondo[j]); }
+    }
+    ajustadas.push(fila);
+  }
+  return {fondo:fondo, trabajo:trabajo, celdas:ajustadas, fallos:fallos,
+          fidelidad: total ? aciertos/total : 1, total:total};
+}
+
+function patronAlfa(id, nombre, aj){
+  var hilos = aj.fondo.map(function(c){ return {dmc:c, base:true}; });
+  var usados = {};
+  aj.trabajo.forEach(function(c){ usados[c] = true; });
+  Object.keys(usados).forEach(function(c){ hilos.push({dmc:c, base:false}); });
   return {
-    largoFinal:largoFinal, banda:banda, reserva:cierre.reduce, filas:filas,
-    hilos:hilos, grupos:grupos, totalCm:totalCm,
-    cordon:cierre.cordon || 0, nHilos:p.hilos.length
+    id:id, nombre:nombre, alias:aj.fondo.length+' hilos de fondo · alfa', dif:2,
+    familia:'alfa', alfa:aj, hilos:hilos, ciclo:aj.celdas.length,
+    intro:'Patrón alfa: los hilos de fondo cuelgan rectos y un hilo de trabajo cruza cada fila anudando sobre todos. En cada nudo se decide quién anuda, y eso es lo que dibuja la figura.'
   };
 }
+
+/* ---------------- cuántos nudos hace cada hilo ---------------- */
+function nudosPorHilo(p, nFilas){
+  var n = p.hilos.length;
+  if(p.familia === 'alfa'){
+    var filas = simularAlfa(p, nFilas), cuenta = {}, pasivos = {};
+    var A = p.alfa;
+    filas.forEach(function(f){
+      f.nudos.forEach(function(nd, j){
+        var quien = nd.trabaja ? f.trabajo : A.fondo[j];
+        cuenta[quien] = (cuenta[quien]||0) + 1;
+        var otro = nd.trabaja ? A.fondo[j] : f.trabajo;
+        pasivos[otro] = (pasivos[otro]||0) + 1;
+      });
+    });
+    return {porColor:cuenta, pasivos:pasivos, alfa:true};
+  }
+  var sim = simular(p, nFilas), cuenta = {};
+  var idx = p.hilos.map(function(x, i){ return i; });
+  var pos = p.hilos.map(function(x, i){ return i; });   /* hilo original en cada carril */
+  var porHilo = new Array(n).fill(0);
+  var orden = p.hilos.map(function(x, i){ return i; });
+  for(var r=0;r<sim.filas.length;r++){
+    var nudos = sim.filas[r];
+    for(var k=0;k<nudos.length;k++){
+      var nd = nudos[k];
+      var quien = (nd.t === 'f' || nd.t === 'fb') ? orden[nd.i] : orden[nd.i+1];
+      porHilo[quien] += (nd.t === 'f' || nd.t === 'b') ? 1 : 2;
+      if(nd.t === 'f' || nd.t === 'b'){ var t = orden[nd.i]; orden[nd.i] = orden[nd.i+1]; orden[nd.i+1] = t; }
+    }
+  }
+  return {porHilo:porHilo, alfa:false};
+}
+
 /*==LOGICA_FIN==*/
 
 /* ---------------- dibujo: gráfico de nudos (notación de patrón) ---------------- */
@@ -819,7 +1071,7 @@ function svgGrafico(p, sim, o){
   var gr = DX*0.30;
   for(var r=-1;r<filas.length;r++){
     for(var j=0;j<n;j++){
-      var col = hiloInfo(ordenes[r+1][j]).x;
+      var col = tono(ordenes[r+1][j]);
       var A = nodo(r, j), B = nodo(r+1, j);
       s.push('<line x1="'+A[0].toFixed(1)+'" y1="'+A[1].toFixed(1)+'" x2="'+B[0].toFixed(1)+'" y2="'+B[1].toFixed(1)+
              '" stroke="'+col+'" stroke-width="'+gr.toFixed(1)+'" stroke-linecap="round"/>');
@@ -831,7 +1083,7 @@ function svgGrafico(p, sim, o){
     [[-1, cabeza-4, -1], [filas.length, cabeza+filas.length*DY+4, 1]].forEach(function(cab, idx){
       var arr = ordenes[idx === 0 ? 0 : ordenes.length-1];
       for(var j=0;j<n;j++){
-        var c = hiloInfo(arr[j]).x, x = LX(j);
+        var c = tono(arr[j]), x = LX(j);
         var y0 = cab[1], dir = cab[2];
         var y1 = y0 + dir*16;
         s.push('<path d="M'+x.toFixed(1)+','+y0.toFixed(1)+' L'+x.toFixed(1)+','+(y0+dir*9).toFixed(1)+'" stroke="'+c+
@@ -846,7 +1098,7 @@ function svgGrafico(p, sim, o){
   var rx = DX*0.47, ry = DY*0.45, gl = Math.min(rx,ry)*0.78;
   for(var r=0;r<filas.length;r++){
     for(var k=0;k<filas[r].length;k++){
-      var nd = filas[r][k], c = hiloInfo(nd.color).x;
+      var nd = filas[r][k], c = tono(nd.color);
       var cx = KX(nd.i), cy = RY(r);
       s.push('<ellipse cx="'+cx.toFixed(1)+'" cy="'+cy.toFixed(1)+'" rx="'+rx.toFixed(1)+'" ry="'+ry.toFixed(1)+
              '" fill="'+c+'" stroke="rgba(0,0,0,.30)" stroke-width="1"/>');
@@ -870,7 +1122,7 @@ function svgBanda(p, o){
              '" preserveAspectRatio="none" role="img" aria-label="Cómo queda la pulsera de '+esc(p.nombre)+'">'];
   out.push('<defs><clipPath id="'+id+'"><rect x="0" y="0" width="'+W.toFixed(0)+'" height="'+H.toFixed(0)+'" rx="'+(s*0.8).toFixed(1)+'"/></clipPath></defs>');
   out.push('<g clip-path="url(#'+id+')">');
-  out.push('<rect x="0" y="0" width="'+W.toFixed(0)+'" height="'+H.toFixed(0)+'" fill="'+hiloInfo(p.hilos[0].dmc).x+'"/>');
+  out.push('<rect x="0" y="0" width="'+W.toFixed(0)+'" height="'+H.toFixed(0)+'" fill="'+tono(p.hilos[0].dmc)+'"/>');
   for(var rep=0; rep<repes; rep++){
     for(var r=0; r<per; r++){
       var gx = (rep*per + r) * s + s*0.5;
@@ -879,7 +1131,7 @@ function svgBanda(p, o){
         var gy = (nd.i + 1) * s - s*0.5;
         out.push('<path d="M'+gx.toFixed(1)+','+(gy-s).toFixed(1)+' L'+(gx+s).toFixed(1)+','+gy.toFixed(1)+
                  ' L'+gx.toFixed(1)+','+(gy+s).toFixed(1)+' L'+(gx-s).toFixed(1)+','+gy.toFixed(1)+
-                 ' Z" fill="'+hiloInfo(nd.color).x+'"/>');
+                 ' Z" fill="'+tono(nd.color)+'"/>');
       }
     }
   }
@@ -890,17 +1142,100 @@ function svgBanda(p, o){
   return out.join('');
 }
 
+/* ---------------- dibujo: gráfico alfa ---------------- */
+function svgAlfa(p, filas, o){
+  var A = p.alfa, n = A.fondo.length, DX = o.dx, DY = o.dy;
+  var margen = o.numeros ? 30 : 8, cabeza = o.cabos ? 30 : 6, pie = 10;
+  var W = margen*2 + n*DX, H = cabeza + filas.length*DY + pie;
+  var LX = function(j){ return margen + j*DX + DX/2; };
+  var RY = function(r){ return cabeza + r*DY + DY/2; };
+  var s = ['<svg viewBox="0 0 '+W.toFixed(0)+' '+H.toFixed(0)+'" width="'+W.toFixed(0)+'" height="'+H.toFixed(0)+
+           '" role="img" aria-label="Gráfico alfa de '+esc(p.nombre)+'">'];
+  if(o.numeros){
+    for(var r=0;r<filas.length;r++){
+      var y = RY(r);
+      s.push('<text x="'+(margen-7)+'" y="'+(y+3.5).toFixed(1)+'" text-anchor="end" font-size="'+(DY*0.46).toFixed(1)+
+             '" font-family="var(--dato)" fill="var(--tinta-3)">'+(r+1)+'</text>');
+      s.push('<text x="'+(W-margen+7)+'" y="'+(y+3.5).toFixed(1)+'" text-anchor="start" font-size="'+(DY*0.46).toFixed(1)+
+             '" font-family="var(--dato)" fill="'+tono(filas[r].trabajo)+'">'+(filas[r].derecha?'→':'←')+'</text>');
+    }
+  }
+  if(o.activa != null && o.activa >= 0 && o.activa < filas.length){
+    s.push('<rect x="'+(margen-3)+'" y="'+(RY(o.activa)-DY/2).toFixed(1)+'" width="'+(n*DX+6)+'" height="'+DY.toFixed(1)+
+           '" rx="4" fill="var(--acento)" opacity=".16"/>');
+  }
+  /* hilos de fondo, rectos de arriba abajo */
+  for(var j=0;j<n;j++){
+    s.push('<line x1="'+LX(j).toFixed(1)+'" y1="'+(cabeza-(o.cabos?14:2))+'" x2="'+LX(j).toFixed(1)+'" y2="'+(H-6)+
+           '" stroke="'+tono(A.fondo[j])+'" stroke-width="'+(DX*0.26).toFixed(1)+'" stroke-linecap="round"/>');
+  }
+  if(o.cabos){
+    var let3 = letrasDe(p);
+    for(j=0;j<n;j++){
+      var c = tono(A.fondo[j]);
+      s.push('<path d="M'+LX(j).toFixed(1)+','+(cabeza-20)+' L'+LX(j).toFixed(1)+','+(cabeza-12)+'" stroke="'+c+
+             '" stroke-width="'+(DX*0.44).toFixed(1)+'" stroke-linecap="round"/>');
+      s.push('<text x="'+LX(j).toFixed(1)+'" y="'+(cabeza-24)+'" text-anchor="middle" font-size="'+(DX*0.40).toFixed(1)+
+             '" font-weight="700" font-family="var(--display)" fill="'+(claro(c)?'#44403c':c)+'">'+(let3.mapa[A.fondo[j]]||'')+'</text>');
+    }
+  }
+  /* recorrido del hilo de trabajo */
+  var dca = [];
+  for(r=0;r<filas.length;r++){
+    var y2 = RY(r);
+    var x1 = filas[r].derecha ? margen-2 : W-margen+2;
+    var x2 = filas[r].derecha ? W-margen+2 : margen-2;
+    dca.push('<path d="M'+x1+','+y2.toFixed(1)+' L'+x2+','+y2.toFixed(1)+'" stroke="'+tono(filas[r].trabajo)+
+             '" stroke-width="'+(DY*0.22).toFixed(1)+'" stroke-linecap="round" opacity=".85"/>');
+  }
+  s = s.concat(dca);
+  /* nudos */
+  var rx = DX*0.44, ry = DY*0.42, gl = Math.min(rx,ry)*0.80;
+  for(r=0;r<filas.length;r++){
+    var nd = filas[r].nudos;
+    for(j=0;j<n;j++){
+      var k = nd[j], cx = LX(j), cy = RY(r);
+      s.push('<ellipse cx="'+cx.toFixed(1)+'" cy="'+cy.toFixed(1)+'" rx="'+rx.toFixed(1)+'" ry="'+ry.toFixed(1)+
+             '" fill="'+tono(k.color)+'" stroke="rgba(0,0,0,.30)" stroke-width="1"/>');
+      s.push('<g transform="translate('+cx.toFixed(1)+','+cy.toFixed(1)+')">'+flechaNudo(k.t, gl)+'</g>');
+    }
+  }
+  s.push('</svg>');
+  return s.join('');
+}
+function svgBandaAlfa(p, o){
+  var A = p.alfa, n = A.fondo.length, R = A.celdas.length, s = o.s;
+  var repes = o.repes || 1;
+  var W = (R*repes)*s, H = n*s;
+  var out = ['<svg viewBox="0 0 '+W.toFixed(0)+' '+H.toFixed(0)+'" width="'+W.toFixed(0)+'" height="'+H.toFixed(0)+
+             '" role="img" aria-label="Cómo queda la pulsera de '+esc(p.nombre)+'">'];
+  var id = 'ba'+p.id+(o.id||'');
+  out.push('<defs><clipPath id="'+id+'"><rect x="0" y="0" width="'+W.toFixed(0)+'" height="'+H.toFixed(0)+'" rx="'+(s*0.9).toFixed(1)+'"/></clipPath></defs>');
+  out.push('<g clip-path="url(#'+id+')">');
+  for(var rep=0; rep<repes; rep++){
+    for(var r=0;r<R;r++){
+      for(var j=0;j<n;j++){
+        out.push('<rect x="'+((rep*R+r)*s).toFixed(1)+'" y="'+(j*s).toFixed(1)+'" width="'+(s+0.6).toFixed(1)+
+                 '" height="'+(s+0.6).toFixed(1)+'" fill="'+tono(A.celdas[r][j])+'"/>');
+      }
+    }
+  }
+  out.push('</g><rect x="0.5" y="0.5" width="'+(W-1).toFixed(0)+'" height="'+(H-1).toFixed(0)+'" rx="'+(s*0.9).toFixed(1)+
+           '" fill="none" stroke="rgba(0,0,0,.22)" stroke-width="1"/></svg>');
+  return out.join('');
+}
+
 /* ---------------- dibujo: esquema de macramé y trenza ---------------- */
 function svgEsquema(p, nNudos, o){
   var giro = !!o.horizontal;
   var W = o.w || 84, kh = o.kh || 13, pad = 9;
   var H = pad*2 + nNudos*kh;
-  var cBase = hiloInfo(p.hilos[0].dmc).x;
-  var cTrab = hiloInfo(p.hilos[p.hilos.length-1].dmc).x;
+  var cBase = tono(p.hilos[0].dmc);
+  var cTrab = tono(p.hilos[p.hilos.length-1].dmc);
   var cx = W/2, m = pad + 2;
   var s = ['<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" role="img" aria-label="Esquema de '+esc(p.nombre)+'">'];
   if(p.familia === 'trenza'){
-    var c2 = hiloInfo(p.hilos[1].dmc).x;
+    var c2 = tono(p.hilos[1].dmc);
     for(var j=0;j<nNudos;j++){
       var y = pad + j*kh;
       var col = (j%2===0) ? cBase : c2;
@@ -936,7 +1271,9 @@ function svgEsquema(p, nNudos, o){
   return cuerpo;
 }
 
-/* ---------------- dibujo: los nudos paso a paso ---------------- */
+/* ---------------- dibujo: los nudos paso a paso ----------------
+   Misma convención que el gráfico: Forward y Backward cruzan los dos
+   hilos; Forward-Backward y Backward-Forward los dejan donde estaban. */
 var GRIS = '#8b8498';
 function cord(d, col, w){
   return '<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="'+(w||9)+'" stroke-linecap="round"/>';
@@ -944,41 +1281,95 @@ function cord(d, col, w){
 function puntaFlecha(x, y, ang, col){
   return '<g transform="translate('+x+','+y+') rotate('+ang+')"><path d="M0,-2 L-5.5,9 L5.5,9 Z" fill="'+col+'"/></g>';
 }
-function envuelta(y, cA, cB){
-  return [
-    cord('M56,'+y+' C70,'+y+' 96,'+(y-5)+' 112,'+(y-10), cA),
-    cord('M112,'+(y-10)+' C124,'+(y-1)+' 110,'+(y+9)+' 84,'+(y+9)+' C70,'+(y+9)+' 62,'+(y+10)+' 56,'+(y+12), cA),
-    cord('M84,'+(y+1)+' L84,'+(y+18), cB)
-  ].join('');
-}
-function svgHitch(etapa, espejo, cA, cB){
+
+/* medio nudo: el hilo que anuda forma un "4" sobre el hilo pasivo */
+var C_ANUDA = '#d12b5e', C_PASIVO = '#a9c3e2';
+function svgMedio(haciaDerecha){
   var g = [];
-  if(etapa === 1){
-    g.push(cord('M84,12 L84,118', cB));
-    g.push(cord('M46,12 L46,42 C46,54 62,50 84,52 C98,53 106,54 112,58', cA));
-    g.push(cord('M112,58 C122,66 118,80 96,84 C84,86 68,84 56,78', cA));
-    g.push(cord('M84,74 L84,96', cB));
-    g.push(cord('M56,78 C52,70 56,60 62,52', cA));
-    g.push(puntaFlecha(63, 50, 16, cA));
-  } else if(etapa === 2){
-    g.push(cord('M84,12 L84,118', cB));
-    g.push(cord('M46,12 L46,40 C46,50 50,56 56,58', cA));
-    g.push(envuelta(58, cA, cB));
-    g.push(cord('M56,70 C68,66 88,72 94,86 L94,118', cA));
-    g.push(cord('M22,76 L22,52', GRIS, 2.5));
-    g.push(puntaFlecha(22, 48, 0, GRIS));
-  } else {
-    g.push(cord('M84,12 L84,60', cB));
-    g.push(cord('M46,12 L46,34 C46,42 50,46 56,47', cA));
-    g.push(envuelta(47, cA, cB));
-    g.push(envuelta(59, cA, cB));
-    g.push(cord('M84,77 C84,90 70,92 64,104 L64,118', cB));
-    g.push(cord('M56,71 C70,68 90,78 96,96 L96,118', cA));
+  function pasivo(y1, y2){
+    return '<path d="M60,'+y1+' L60,'+y2+'" stroke="'+C_PASIVO+'" stroke-width="11" stroke-linecap="round" fill="none"/>'+
+           '<path d="M60,'+y1+' L60,'+y2+'" stroke="rgba(0,0,0,.14)" stroke-width="11" stroke-linecap="round" fill="none" opacity=".5" style="mix-blend-mode:multiply"/>';
   }
-  var cuerpo = g.join('');
-  if(espejo) cuerpo = '<g transform="translate(130,0) scale(-1,1)">'+cuerpo+'</g>';
-  return '<svg viewBox="0 0 130 130" role="img" aria-hidden="true">'+cuerpo+'</svg>';
+  g.push(pasivo(8, 112));
+  var d = haciaDerecha
+    ? 'M24,14 L86,54 C96,61 88,72 60,74 C40,75 28,70 24,63 L24,99'
+    : 'M96,14 L34,54 C24,61 32,72 60,74 C80,75 92,70 96,63 L96,99';
+  g.push('<path d="'+d+'" stroke="'+C_ANUDA+'" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>');
+  g.push(pasivo(64, 86));
+  var ax = haciaDerecha ? 24 : 96;
+  g.push('<path d="M'+(ax-6)+',100 L'+ax+',113 L'+(ax+6)+',100 Z" fill="#141218"/>');
+  return '<svg viewBox="0 0 120 120" role="img" aria-hidden="true">'+g.join('')+'</svg>';
 }
+
+/* símbolo del nudo: brazos que entran y salen, y el color que queda a la vista */
+function svgSimbolo(tipo){
+  var cIzq = (tipo === 'f' || tipo === 'fb') ? C_ANUDA : C_PASIVO;
+  var cDer = (tipo === 'f' || tipo === 'fb') ? C_PASIVO : C_ANUDA;
+  var cruza = (tipo === 'f' || tipo === 'b');
+  var visible = C_ANUDA;
+  var abIzq = cruza ? cDer : cIzq, abDer = cruza ? cIzq : cDer;
+  var brazo = function(x1, y1, col){
+    return '<path d="M'+x1+','+y1+' C'+x1+','+(y1 + (y1 < 60 ? 26 : -26))+' 60,'+(y1 < 60 ? 34 : 86)+' 60,60" '+
+           'stroke="'+col+'" stroke-width="16" stroke-linecap="round" fill="none"/>';
+  };
+  var g = [brazo(26,10,cIzq), brazo(94,10,cDer), brazo(26,110,abIzq), brazo(94,110,abDer)];
+  g.push('<ellipse cx="60" cy="60" rx="25" ry="21" fill="'+visible+'" stroke="rgba(0,0,0,.28)"/>');
+  g.push('<g transform="translate(60,60)">'+flechaNudo(tipo, 13)+'</g>');
+  return '<svg viewBox="0 0 120 120" role="img" aria-hidden="true">'+g.join('')+'</svg>';
+}
+
+function fichasNudo(){
+  var def = [
+    {t:'f',  n:'Nudo hacia la derecha', en:'forward knot', pasos:[true,true],
+     r:'Los dos hilos cambian de sitio: el rosa pasa a la derecha.',
+     usa:'El de las rayas diagonales y el de la mitad izquierda del chevron.'},
+    {t:'b',  n:'Nudo hacia la izquierda', en:'backward knot', pasos:[false,false],
+     r:'Los dos hilos cambian de sitio: el rosa pasa a la izquierda.',
+     usa:'El de la mitad derecha del chevron y el de los tramos de vuelta del zigzag.'},
+    {t:'fb', n:'Nudo doble derecha-izquierda', en:'forward-backward knot', pasos:[true,false],
+     r:'Cada hilo vuelve a su sitio: el rosa se queda a la izquierda.',
+     usa:'Sirve para que un color no se mueva de su columna. Es lo que mantiene quietos los hilos de los bordes en el patrón Ornamento.'},
+    {t:'bf', n:'Nudo doble izquierda-derecha', en:'backward-forward knot', pasos:[false,true],
+     r:'Cada hilo vuelve a su sitio: el rosa se queda a la derecha.',
+     usa:'El espejo del anterior, para sujetar un color por el otro lado.'}
+  ];
+  return def.map(function(d){
+    var p1 = d.pasos[0], p2 = d.pasos[1];
+    var tiras =
+      '<figure class="tira"><span class="paso-n">1</span>'+svgMedio(p1)+
+        '<figcaption>'+(p1 ? 'Un 4 sobre el otro hilo: punta por detrás, sale por el hueco y tira hacia arriba.'
+                           : 'Un 4 al revés sobre el otro hilo: punta por detrás, sale por el hueco y tira hacia arriba.')+'</figcaption></figure>'+
+      '<figure class="tira"><span class="paso-n">2</span>'+svgMedio(p2)+
+        '<figcaption>'+(p1 === p2 ? 'La misma vuelta otra vez. Un nudo son siempre dos vueltas.'
+                                  : 'La segunda vuelta, en el otro sentido y con el mismo hilo.')+'</figcaption></figure>'+
+      '<figure class="tira"><span class="paso-n">=</span>'+svgSimbolo(d.t)+
+        '<figcaption>'+esc(d.r)+'</figcaption></figure>';
+    return '<article class="nudo-ficha"><h3>'+esc(d.n)+' <code>'+esc(d.en)+'</code></h3>'+
+      '<div class="tiras tres">'+tiras+'</div>'+
+      '<p class="usa">'+esc(d.usa)+'</p></article>';
+  }).join('');
+}
+
+var FICHAS_MACRAME = [
+  {
+    t:'Nudo plano', sim:'macramé', nota:'Cuatro hilos: dos quietos en el centro y dos que trabajan por fuera.',
+    tiras:[
+      {s:function(){ return svgPlano(1, tono('311'), tono('783')); }, b:'1', x:'El hilo de trabajo izquierdo pasa por delante de los dos del centro y por detrás del de la derecha.'},
+      {s:function(){ return svgPlano(2, tono('311'), tono('783')); }, b:'2', x:'El derecho pasa por detrás de los del centro y sale por el bucle que dejó el izquierdo. Tira de los dos a la vez.'},
+      {s:function(){ return svgPlano(3, tono('311'), tono('783')); }, b:'3', x:'Eso es medio nudo. Repite empezando por la derecha y queda el nudo plano completo.'}
+    ],
+    usa:'La base del macramé. Alternando el lado de inicio sale plano; sin alternar, sale espiral.'
+  },
+  {
+    t:'Medio nudo', sim:'espiral', nota:'La primera mitad del nudo plano, repetida siempre desde el mismo lado.',
+    tiras:[
+      {s:function(){ return svgPlano(1, tono('311'), tono('783')); }, b:'1', x:'Empieza siempre por la izquierda: por delante del centro y por detrás del hilo derecho.'},
+      {s:function(){ return svgPlano(2, tono('311'), tono('783')); }, b:'2', x:'Cierra con el derecho por detrás y por el bucle. No hagas la segunda mitad: pasa ya al siguiente nudo.'}
+    ],
+    usa:'La pulsera se va girando sola cada tres o cuatro nudos. Déjala girar y sigue anudando.'
+  }
+];
+
 function svgPlano(etapa, cBase, cTrab){
   var g = [];
   var baseCords = cord('M60,12 L60,118', cBase, 7) + cord('M72,12 L72,118', cBase, 7);
@@ -1028,57 +1419,9 @@ function svgTrenza(etapa, c1, c2){
   return '<svg viewBox="0 0 130 130" role="img" aria-hidden="true">'+g.join('')+'</svg>';
 }
 
-/* ---------------- fichas de nudos ---------------- */
-var ROSA = hiloInfo('3804').x, CRUDO = hiloInfo('712').x, AZUL = hiloInfo('311').x, MOST = hiloInfo('783').x;
-var FICHAS = [
-  {
-    t:'Nudo hacia la derecha', sim:'↘', nota:'También llamado "nudo 4". El hilo que anuda viene de la izquierda y acaba a la derecha.',
-    tiras:[
-      {s:svgHitch(1,false,ROSA,CRUDO), b:'1', x:'Cruza el hilo rosa por encima del crudo formando un 4 y lleva su punta por detrás del crudo.'},
-      {s:svgHitch(2,false,ROSA,CRUDO), b:'2', x:'Saca la punta por el hueco del 4 y tira hacia arriba hasta que el nudo apoye en el de antes.'},
-      {s:svgHitch(3,false,ROSA,CRUDO), b:'3', x:'Da la misma vuelta otra vez: el nudo es doble. El rosa se queda a la derecha y el crudo pasa a la izquierda.'}
-    ],
-    usa:'Es el nudo de las rayas diagonales y de la mitad izquierda del chevron.'
-  },
-  {
-    t:'Nudo hacia la izquierda', sim:'↙', nota:'El mismo nudo en espejo: el hilo que anuda viene de la derecha y acaba a la izquierda.',
-    tiras:[
-      {s:svgHitch(1,true,ROSA,CRUDO), b:'1', x:'Cruza el rosa por encima del crudo formando una P al revés y lleva la punta por detrás.'},
-      {s:svgHitch(2,true,ROSA,CRUDO), b:'2', x:'Saca la punta por el hueco y tira hacia arriba, con la misma fuerza que en el resto.'},
-      {s:svgHitch(3,true,ROSA,CRUDO), b:'3', x:'Repite la vuelta. El rosa queda a la izquierda y el crudo a la derecha.'}
-    ],
-    usa:'Es el nudo de la mitad derecha del chevron y de los tramos de vuelta del zigzag.'
-  },
-  {
-    t:'Nudo doble de ida y vuelta', sim:'→', nota:'Un nudo hacia la derecha seguido de uno hacia la izquierda con la misma pareja. Los hilos acaban donde empezaron.',
-    tiras:[
-      {s:svgHitch(3,false,ROSA,CRUDO), b:'1', x:'Haz un nudo completo hacia la derecha con el hilo rosa.'},
-      {s:svgHitch(3,true,ROSA,CRUDO), b:'2', x:'Con ese mismo hilo rosa, que ahora está a la derecha, haz un nudo hacia la izquierda. Vuelve a su columna.'}
-    ],
-    usa:'Es el nudo del damero y el que se usa para dibujar letras o figuras sin que los colores se corran.'
-  },
-  {
-    t:'Nudo plano', sim:'macramé', nota:'Cuatro hilos: dos quietos en el centro y dos que trabajan por fuera.',
-    tiras:[
-      {s:svgPlano(1,AZUL,MOST), b:'1', x:'El hilo de trabajo izquierdo pasa por delante de los dos del centro y por detrás del de la derecha.'},
-      {s:svgPlano(2,AZUL,MOST), b:'2', x:'El derecho pasa por detrás de los del centro y sale por el bucle que dejó el izquierdo. Tira de los dos a la vez.'},
-      {s:svgPlano(3,AZUL,MOST), b:'3', x:'Eso es medio nudo. Repite empezando por la derecha y queda el nudo plano completo.'}
-    ],
-    usa:'La base del macramé. Alternando el lado de inicio sale plano; sin alternar, sale espiral.'
-  },
-  {
-    t:'Medio nudo', sim:'espiral', nota:'La primera mitad del nudo plano, repetida siempre desde el mismo lado.',
-    tiras:[
-      {s:svgPlano(1,AZUL,MOST), b:'1', x:'Empieza siempre por la izquierda: por delante del centro y por detrás del hilo derecho.'},
-      {s:svgPlano(2,AZUL,MOST), b:'2', x:'Cierra con el derecho por detrás y por el bucle. No hagas la segunda mitad: pasa ya al siguiente nudo.'}
-    ],
-    usa:'La pulsera se va girando sola cada tres o cuatro nudos. Déjala girar y sigue anudando.'
-  }
-];
-
 /* ---------------- cierres ---------------- */
 function svgCierre(tipo){
-  var band = hiloInfo('3845').x, acc = hiloInfo('783').x, gris = '#9a93a6';
+  var band = tono('3845'), acc = tono('783'), gris = '#9a93a6';
   var s = ['<svg viewBox="0 0 220 96" role="img" aria-hidden="true">'];
   if(tipo === 'trenzas'){
     s.push('<rect x="64" y="38" width="92" height="20" rx="5" fill="'+band+'"/>');
@@ -1127,6 +1470,672 @@ var CIERRES_DOC = [
           'Mide tu broche: si pasa de 1,5 cm, resta la diferencia a la banda.']}
 ];
 
+/* ---------------- leer un gráfico desde una imagen ---------------- */
+function aCanvas(img, maxLado){
+  var e = Math.min(1, maxLado / Math.max(img.width, img.height));
+  var c = document.createElement('canvas');
+  c.width = Math.round(img.width * e); c.height = Math.round(img.height * e);
+  c.getContext('2d', {willReadFrequently:true}).drawImage(img, 0, 0, c.width, c.height);
+  return c;
+}
+function datos(c){ return c.getContext('2d', {willReadFrequently:true}).getImageData(0,0,c.width,c.height); }
+
+function colorFondo(d){
+  var cubo = {}, mejor = null, max = -1;
+  for(var i=0;i<d.data.length;i+=4*7){
+    var k = ((d.data[i]>>4)<<8) | ((d.data[i+1]>>4)<<4) | (d.data[i+2]>>4);
+    cubo[k] = (cubo[k]||0)+1;
+    if(cubo[k] > max){ max = cubo[k]; mejor = k; }
+  }
+  return [((mejor>>8)&15)*16+8, ((mejor>>4)&15)*16+8, (mejor&15)*16+8];
+}
+function mascaraColor(d, fondo){
+  var n = d.width*d.height, m = new Uint8Array(n);
+  for(var i=0;i<n;i++){
+    var r = d.data[i*4], g = d.data[i*4+1], b = d.data[i*4+2];
+    var mx = Math.max(r,g,b), mn = Math.min(r,g,b);
+    var sat = mx ? (mx-mn)/mx : 0;
+    var lejos = Math.abs(r-fondo[0]) + Math.abs(g-fondo[1]) + Math.abs(b-fondo[2]);
+    m[i] = (sat > 0.085 && lejos > 34) ? 1 : 0;
+  }
+  return m;
+}
+function recuadro(m, w, h){
+  var x0=w, x1=-1, y0=h, y1=-1;
+  var colSum = new Int32Array(w), filSum = new Int32Array(h);
+  for(var y=0;y<h;y++) for(var x=0;x<w;x++) if(m[y*w+x]){ colSum[x]++; filSum[y]++; }
+  var umbC = Math.max(2, Math.max.apply(null, Array.from(colSum)) * 0.07);
+  var umbF = Math.max(2, Math.max.apply(null, Array.from(filSum)) * 0.07);
+  for(var x=0;x<w;x++) if(colSum[x] >= umbC){ if(x<x0) x0=x; if(x>x1) x1=x; }
+  for(var y=0;y<h;y++) if(filSum[y] >= umbF){ if(y<y0) y0=y; if(y>y1) y1=y; }
+  return {x0:x0, x1:x1, y0:y0, y1:y1, colSum:colSum, filSum:filSum};
+}
+/* periodo dominante de un perfil, por autocorrelación */
+function periodoPerfil(perfil, min, max){
+  var n = perfil.length, media = 0;
+  for(var i=0;i<n;i++) media += perfil[i];
+  media /= n;
+  var v = new Float64Array(n);
+  for(i=0;i<n;i++) v[i] = perfil[i] - media;
+  var mejor = min, mejorVal = -Infinity;
+  for(var p=min; p<=max; p++){
+    var s = 0, c = 0;
+    for(i=0;i+p<n;i++){ s += v[i]*v[i+p]; c++; }
+    if(!c) continue;
+    var val = s/c;
+    if(val > mejorVal){ mejorVal = val; mejor = p; }
+  }
+  /* refina con fase: primer máximo */
+  var re=0, im=0;
+  for(i=0;i<n;i++){ var a = 2*Math.PI*i/mejor; re += v[i]*Math.cos(a); im += v[i]*Math.sin(a); }
+  var fase = Math.atan2(im, re);
+  var off = ((-fase/(2*Math.PI))*mejor) % mejor;
+  if(off < 0) off += mejor;
+  return {p:mejor, off:off};
+}
+/* separa bloques verticales de contenido y se queda con el más alto */
+function bloquePrincipal(filSum, h){
+  var umb = Math.max(1, Math.max.apply(null, Array.from(filSum)) * 0.05);
+  var bloques = [], ini = -1;
+  for(var y=0; y<h; y++){
+    if(filSum[y] >= umb && ini < 0) ini = y;
+    else if(filSum[y] < umb && ini >= 0){ if(y-ini > 8) bloques.push([ini, y-1]); ini = -1; }
+  }
+  if(ini >= 0) bloques.push([ini, h-1]);
+  if(!bloques.length) return [0, h-1];
+  bloques.sort(function(a,b){ return (b[1]-b[0]) - (a[1]-a[0]); });
+  return bloques[0];
+}
+function detectaRejilla(d, pista){
+  var w = d.width, h = d.height;
+  var fondo = colorFondo(d);
+  var m = mascaraColor(d, fondo);
+  var caja = recuadro(m, w, h);
+  var bl = bloquePrincipal(caja.filSum, h);
+  caja.y0 = bl[0]; caja.y1 = bl[1];
+  /* recalcula el ancho solo dentro del bloque */
+  var colSum = new Int32Array(w);
+  for(var y=caja.y0; y<=caja.y1; y++) for(var x=0; x<w; x++) if(m[y*w+x]) colSum[x]++;
+  var mx = 0; for(x=0;x<w;x++) if(colSum[x] > mx) mx = colSum[x];
+  var umbC = Math.max(2, mx*0.08);
+  caja.x0 = w; caja.x1 = -1;
+  for(x=0;x<w;x++) if(colSum[x] >= umbC){ if(x < caja.x0) caja.x0 = x; if(x > caja.x1) caja.x1 = x; }
+  var ancho = caja.x1 - caja.x0 + 1, alto = caja.y1 - caja.y0 + 1;
+  if(ancho < 40 || alto < 40) return null;
+  var perfX = new Float64Array(ancho), perfY = new Float64Array(alto);
+  for(y=caja.y0; y<=caja.y1; y++)
+    for(x=caja.x0; x<=caja.x1; x++)
+      if(m[y*w+x]){ perfX[x-caja.x0]++; perfY[y-caja.y0]++; }
+  var px = periodoPerfil(perfX, Math.max(5, Math.round(ancho/40)), Math.round(ancho/3));
+  var py = periodoPerfil(perfY, Math.max(5, Math.round(alto/90)), Math.round(alto/4));
+  var dx = px.p, dy = py.p;
+  var nH = Math.max(4, Math.round(ancho / dx));
+  if(pista && pista.nHilos){ nH = pista.nHilos; dx = ancho / nH; }
+  var nF = Math.max(4, Math.round(alto / dy));
+  var g = {fondo:fondo, x0:caja.x0, y0:caja.y0, ancho:ancho, alto:alto,
+           dx:dx, dy:dy, nHilos:nH, nFilas:nF};
+  return afinaRejilla(d, m, g);
+}
+/* un nudo es una mancha de color uniforme: se buscan sus centros y se
+   ajusta la rejilla a ellos. */
+function mapaNudos(d, fondo, rad, paso){
+  var w = d.width, h = d.height;
+  var W = Math.floor(w/paso), H = Math.floor(h/paso);
+  var map = new Float32Array(W*H);
+  var cos = [], sin = [];
+  for(var a=0;a<12;a++){ cos.push(Math.cos(a*Math.PI/6)*rad); sin.push(Math.sin(a*Math.PI/6)*rad); }
+  for(var gy=0; gy<H; gy++){
+    var y = gy*paso;
+    for(var gx=0; gx<W; gx++){
+      var x = gx*paso;
+      var mnR=255,mxR=0,mnG=255,mxG=0,mnB=255,mxB=0,sR=0,sG=0,sB=0,ok=1;
+      for(var a=0;a<12;a++){
+        var px = (x+cos[a])|0, py = (y+sin[a])|0;
+        if(px<0||py<0||px>=w||py>=h){ ok=0; break; }
+        var i=(py*w+px)*4, R=d.data[i], G=d.data[i+1], B=d.data[i+2];
+        if(R<mnR)mnR=R; if(R>mxR)mxR=R; if(G<mnG)mnG=G; if(G>mxG)mxG=G; if(B<mnB)mnB=B; if(B>mxB)mxB=B;
+        sR+=R; sG+=G; sB+=B;
+      }
+      if(!ok) continue;
+      var lejos = Math.abs(sR/12-fondo[0]) + Math.abs(sG/12-fondo[1]) + Math.abs(sB/12-fondo[2]);
+      if(lejos < 28) continue;
+      var disp = Math.max(mxR-mnR, mxG-mnG, mxB-mnB);
+      map[gy*W+gx] = Math.max(0, 1 - disp/95);
+    }
+  }
+  return {map:map, W:W, H:H, paso:paso};
+}
+function picos(mn, sep, umbral){
+  var out = [], W = mn.W, H = mn.H, r = Math.max(1, Math.round(sep/mn.paso/2));
+  for(var y=0; y<H; y++){
+    for(var x=0; x<W; x++){
+      var v = mn.map[y*W+x];
+      if(v < umbral) continue;
+      var mejor = true;
+      for(var dy=-r; dy<=r && mejor; dy++){
+        for(var dx=-r; dx<=r; dx++){
+          var nx=x+dx, ny=y+dy;
+          if(nx<0||ny<0||nx>=W||ny>=H) continue;
+          var u = mn.map[ny*W+nx];
+          if(u > v || (u === v && (ny<y || (ny===y && nx<x)))){ mejor = false; break; }
+        }
+      }
+      if(mejor) out.push([x*mn.paso, y*mn.paso, v]);
+    }
+  }
+  return out;
+}
+/* paso y fase que mejor alinean una nube de valores (periodograma circular) */
+function mejorPaso(vals, lo, hi, pasos){
+  var mejor = lo, mejorR = -1, fase = 0;
+  for(var k=0; k<pasos; k++){
+    var p = lo + (hi-lo)*k/(pasos-1);
+    var re = 0, im = 0;
+    for(var i=0;i<vals.length;i++){ var a = 2*Math.PI*vals[i]/p; re += Math.cos(a); im += Math.sin(a); }
+    var R = Math.sqrt(re*re+im*im)/vals.length;
+    if(R > mejorR){ mejorR = R; mejor = p; fase = Math.atan2(im, re); }
+  }
+  var off = (-fase/(2*Math.PI))*mejor;
+  off = ((off % mejor) + mejor) % mejor;
+  return {paso:mejor, off:off, R:mejorR};
+}
+function afinaRejilla(d, m, g){
+  var mn = mapaNudos(d, g.fondo, g.dx*0.38, 2);
+  var ps = picos(mn, g.dx*0.80, 0.45);
+  if(ps.length < 12){ g.calidad = 0; g.picos = ps.length; return g; }
+  var py = mejorPaso(ps.map(function(p){ return p[1]; }), g.dy*0.84, g.dy*1.18, 180);
+  var dy = py.paso;
+  var filaDe = function(y){ return Math.round((y - py.off) / dy); };
+  var cuenta = {};
+  ps.forEach(function(p){ var r = filaDe(p[1]); cuenta[r] = (cuenta[r]||0)+1; });
+  var claves = Object.keys(cuenta).map(Number).sort(function(a,b){ return a-b; });
+  var ns = claves.map(function(k){ return cuenta[k]; }).sort(function(a,b){ return a-b; });
+  var med = ns[ns.length>>1];
+  var vale = function(k){ return cuenta[k] >= Math.max(2, med*0.40) && cuenta[k] <= med*1.6; };
+  var r0 = claves[0], r1 = claves[claves.length-1];
+  while(r0 < r1 && !vale(r0)) r0++;
+  while(r1 > r0 && !vale(r1)) r1--;
+  var dentro = ps.filter(function(p){ var r = filaDe(p[1]); return r >= r0 && r <= r1; });
+  if(dentro.length < 10) dentro = ps;
+  var px = mejorPaso(dentro.map(function(p){ return p[0]; }), g.dx*0.84, g.dx*1.18, 180);
+  var dx = px.paso;
+  var xs = dentro.map(function(p){ return Math.round((p[0] - px.off) / dx); });
+  var iMin = Math.min.apply(null, xs), iMax = Math.max.apply(null, xs);
+  var nuevo = Object.assign({}, g);
+  nuevo.dx = dx; nuevo.dy = dy;
+  nuevo.x0 = px.off + iMin*dx - dx;
+  nuevo.y0 = py.off + r0*dy - dy/2;
+  nuevo.nHilos = (iMax - iMin) + 2;
+  nuevo.nFilas = (r1 - r0) + 1;
+  var w = d.width;
+  function uniforme(x, y, rad){
+    var mnR=255,mxR=0,mnG=255,mxG=0,mnB=255,mxB=0,sR=0,sG=0,sB=0;
+    for(var a=0;a<12;a++){
+      var an=a*Math.PI/6, qx=Math.round(x+Math.cos(an)*rad), qy=Math.round(y+Math.sin(an)*rad);
+      if(qx<0||qy<0||qx>=d.width||qy>=d.height) return 0;
+      var i=(qy*w+qx)*4, R=d.data[i],G=d.data[i+1],B=d.data[i+2];
+      if(R<mnR)mnR=R; if(R>mxR)mxR=R; if(G<mnG)mnG=G; if(G>mxG)mxG=G; if(B<mnB)mnB=B; if(B>mxB)mxB=B;
+      sR+=R; sG+=G; sB+=B;
+    }
+    var lejos = Math.abs(sR/12-g.fondo[0]) + Math.abs(sG/12-g.fondo[1]) + Math.abs(sB/12-g.fondo[2]);
+    if(lejos < 28) return 0;
+    return Math.max(0, 1 - Math.max(mxR-mnR,mxG-mnG,mxB-mnB)/95);
+  }
+  function puntua(gg, des){
+    var s=0, c=0;
+    for(var r=0;r<gg.nFilas;r++)
+      for(var i=((r+des)%2); i<gg.nHilos-1; i+=2){
+        s += uniforme(gg.x0+(i+1)*gg.dx, gg.y0+(r+0.5)*gg.dy, gg.dx*0.38); c++;
+      }
+    return c ? s/c : 0;
+  }
+  /* fase final: prueba medio paso arriba/abajo, medio carril y las dos paridades */
+  var mejor = null;
+  [-0.5, 0, 0.5].forEach(function(fy){
+    [-0.5, 0, 0.5].forEach(function(fx){
+      [0, 1].forEach(function(des){
+        var c = Object.assign({}, nuevo);
+        c.y0 = nuevo.y0 + fy*nuevo.dy;
+        c.x0 = nuevo.x0 + fx*nuevo.dx;
+        c.impar = !!des;
+        var sc = puntua(c, des);
+        if(!mejor || sc > mejor.sc) mejor = {sc:sc, g:c};
+      });
+    });
+  });
+  nuevo = mejor.g;
+  var des = nuevo.impar ? 1 : 0;
+  /* empuje fino */
+  var sc = mejor.sc, paso = nuevo.dy*0.12;
+  for(var it=0; it<18; it++){
+    var movido = false;
+    [['x0', nuevo.dx*0.10], ['y0', paso], ['dx', nuevo.dx*0.008], ['dy', nuevo.dy*0.008]].forEach(function(par){
+      [1,-1].forEach(function(sg){
+        var c = Object.assign({}, nuevo);
+        c[par[0]] = nuevo[par[0]] + sg*par[1];
+        var v = puntua(c, des);
+        if(v > sc + 1e-6){ sc = v; nuevo = c; movido = true; }
+      });
+    });
+    if(!movido) break;
+    paso *= 0.8;
+  }
+  nuevo.calidad = sc;
+  nuevo.picos = ps.length;
+  return nuevo;
+}
+
+/* centro del nudo i de la fila r */
+function puntoNudo(g, r, i){
+  return [g.x0 + (i+1)*g.dx, g.y0 + (r+0.5)*g.dy];
+}
+function puntoHilo(g, j){
+  return [g.x0 + (j+0.5)*g.dx, g.y0 - g.dy*0.45];
+}
+/* clase de paleta dominante en un disco pequeño */
+function claseModal(d, cx, cy, rad, pal){
+  var v = {}, tot = 0;
+  for(var dy=-rad; dy<=rad; dy++){
+    for(var dx=-rad; dx<=rad; dx++){
+      if(dx*dx+dy*dy > rad*rad) continue;
+      var x = Math.round(cx+dx), y = Math.round(cy+dy);
+      if(x<0||y<0||x>=d.width||y>=d.height) continue;
+      var i = (y*d.width+x)*4;
+      var k = pal.de([d.data[i], d.data[i+1], d.data[i+2]]);
+      v[k] = (v[k]||0)+1; tot++;
+    }
+  }
+  var mejor = 0, max = -1;
+  Object.keys(v).forEach(function(k){ if(v[k] > max){ max = v[k]; mejor = +k; } });
+  return {clase:mejor, conf: tot ? max/tot : 0};
+}
+function medianaColor(d, cx, cy, r0, r1){
+  var rs=[], gs=[], bs=[];
+  for(var dy=-r1; dy<=r1; dy+=1){
+    for(var dx=-r1; dx<=r1; dx+=1){
+      var q = dx*dx+dy*dy;
+      if(q < r0*r0 || q > r1*r1) continue;
+      var x = Math.round(cx+dx), y = Math.round(cy+dy);
+      if(x<0||y<0||x>=d.width||y>=d.height) continue;
+      var i = (y*d.width+x)*4;
+      rs.push(d.data[i]); gs.push(d.data[i+1]); bs.push(d.data[i+2]);
+    }
+  }
+  if(!rs.length) return null;
+  function med(a){ a.sort(function(p,q){return p-q;}); return a[a.length>>1]; }
+  return [med(rs), med(gs), med(bs)];
+}
+/* k-medias sobre los colores leídos, fusionando los que casi coinciden */
+function paleta(muestras, kMax){
+  var pts = muestras.filter(Boolean);
+  if(!pts.length) return {centros:[], de:function(){ return 0; }};
+  var k = Math.min(kMax, pts.length);
+  var C = [pts[0].slice()];
+  while(C.length < k){
+    var lejos = null, dmax = -1;
+    pts.forEach(function(p){
+      var dm = Infinity;
+      C.forEach(function(c){ var e = (p[0]-c[0])*(p[0]-c[0])+(p[1]-c[1])*(p[1]-c[1])+(p[2]-c[2])*(p[2]-c[2]); if(e<dm) dm=e; });
+      if(dm > dmax){ dmax = dm; lejos = p; }
+    });
+    C.push(lejos.slice());
+  }
+  for(var it=0; it<30; it++){
+    var sum = C.map(function(){ return [0,0,0,0]; });
+    pts.forEach(function(p){
+      var mejor = 0, dm = Infinity;
+      C.forEach(function(c, i){ var e = (p[0]-c[0])*(p[0]-c[0])+(p[1]-c[1])*(p[1]-c[1])+(p[2]-c[2])*(p[2]-c[2]); if(e<dm){ dm=e; mejor=i; } });
+      sum[mejor][0]+=p[0]; sum[mejor][1]+=p[1]; sum[mejor][2]+=p[2]; sum[mejor][3]++;
+    });
+    C = C.map(function(c, i){ return sum[i][3] ? [sum[i][0]/sum[i][3], sum[i][1]/sum[i][3], sum[i][2]/sum[i][3]] : c; });
+  }
+  /* fusiona centros parecidos */
+  var fin = [];
+  C.forEach(function(c){
+    for(var i=0;i<fin.length;i++){
+      var e = Math.abs(fin[i][0]-c[0]) + Math.abs(fin[i][1]-c[1]) + Math.abs(fin[i][2]-c[2]);
+      if(e < 62) return;
+    }
+    fin.push(c);
+  });
+  return {
+    centros: fin,
+    de: function(p){
+      var mejor = 0, dm = Infinity;
+      fin.forEach(function(c, i){
+        var e = (p[0]-c[0])*(p[0]-c[0])+(p[1]-c[1])*(p[1]-c[1])+(p[2]-c[2])*(p[2]-c[2]);
+        if(e<dm){ dm=e; mejor=i; }
+      });
+      return mejor;
+    }
+  };
+}
+function hex(c){
+  return '#' + [0,1,2].map(function(i){ var v = Math.max(0, Math.min(255, Math.round(c[i]))).toString(16); return v.length<2 ? '0'+v : v; }).join('');
+}
+/* parche binario de la flecha, centrado */
+function parcheGlifo(d, cx, cy, rad, relleno){
+  var S = 10, lado = 2*S;
+  var raw = [], sx=0, sy=0, n=0;
+  for(var y=-rad; y<=rad; y++){
+    for(var x=-rad; x<=rad; x++){
+      if(x*x+y*y > rad*rad) continue;
+      var px = Math.round(cx+x), py = Math.round(cy+y);
+      if(px<0||py<0||px>=d.width||py>=d.height) continue;
+      var i = (py*d.width+px)*4;
+      var dif = Math.abs(d.data[i]-relleno[0]) + Math.abs(d.data[i+1]-relleno[1]) + Math.abs(d.data[i+2]-relleno[2]);
+      if(dif > 150){ raw.push([x,y]); sx+=x; sy+=y; n++; }
+    }
+  }
+  var p = new Float32Array(lado*lado);
+  if(!n) return {p:p, corr:0, n:0};
+  var mx = sx/n, my = sy/n, vxy=0, vxx=0, vyy=0;
+  raw.forEach(function(q){ vxy += (q[0]-mx)*(q[1]-my); vxx += (q[0]-mx)*(q[0]-mx); vyy += (q[1]-my)*(q[1]-my); });
+  var corr = (vxx>0 && vyy>0) ? vxy/Math.sqrt(vxx*vyy) : 0;
+  raw.forEach(function(q){
+    var ix = Math.round(q[0]-mx)+S, iy = Math.round(q[1]-my)+S;
+    if(ix>=0 && iy>=0 && ix<lado && iy<lado) p[iy*lado+ix] = 1;
+  });
+  return {p:p, corr:corr, n:n};
+}
+function dist2(a, b){ var s=0; for(var i=0;i<a.length;i++){ var e=a[i]-b[i]; s+=e*e; } return s; }
+
+/* Resuelve los tipos de nudo: el color dice qué hilo anuda y el glifo si el
+   nudo es simple o doble. Búsqueda por filas con haz, respetando siempre el
+   color observado. */
+function resuelveTipos(rej, inicial, glifos, opt){
+  var NF = rej.length, n = inicial.length;
+  var TIPOS = ['f','b','fb','bf'], ESP = {f:'b', b:'f', fb:'bf', bf:'fb'};
+  /* plantillas iniciales a partir del rasgo de rectitud */
+  var corrs = [];
+  rej.forEach(function(f, r){ Object.keys(f).forEach(function(i){ corrs.push(Math.abs(glifos[r+','+i].corr)); }); });
+  corrs.sort(function(a,b){ return a-b; });
+  var umbral = corrs.length ? corrs[Math.floor(corrs.length*0.45)] : 0.3;
+  umbral = Math.min(0.5, Math.max(0.16, umbral));
+  var plant = {}, acum = {};
+  TIPOS.forEach(function(t){ acum[t] = []; });
+  var orden = inicial.slice();
+  for(var r=0;r<NF;r++){
+    var ks = Object.keys(rej[r]).map(Number).sort(function(a,b){return a-b;});
+    for(var q=0;q<ks.length;q++){
+      var i = ks[q], K = rej[r][i], g = glifos[r+','+i];
+      var recto = Math.abs(g.corr) > umbral;
+      var t = null;
+      if(orden[i] === K && orden[i+1] !== K) t = recto ? 'f' : 'fb';
+      else if(orden[i+1] === K && orden[i] !== K) t = recto ? 'b' : 'bf';
+      if(t) acum[t].push(g.p);
+      var tt = t || (recto ? (g.corr>0?'f':'b') : (g.corr>0?'fb':'bf'));
+      if(tt === 'f' || tt === 'b'){ var z = orden[i]; orden[i] = orden[i+1]; orden[i+1] = z; }
+    }
+  }
+  var lado = 20*20;
+  TIPOS.forEach(function(t){
+    var v = new Float32Array(lado);
+    if(acum[t].length){ acum[t].forEach(function(p){ for(var i=0;i<lado;i++) v[i] += p[i]; });
+      for(var i=0;i<lado;i++) v[i] /= acum[t].length; }
+    plant[t] = v;
+  });
+  function coste(r, i, t){ return dist2(glifos[r+','+i].p, plant[t]); }
+
+  function pasada(){
+    var estados = [{orden:inicial.join(','), arr:inicial.slice(), c:0, prev:-1, tipos:null}];
+    var hist = [estados];
+    for(var r=0;r<NF;r++){
+      var ks = Object.keys(rej[r]).map(Number).sort(function(a,b){return a-b;});
+      var libres = opt.simetrico ? ks.filter(function(i){ return i <= (n-2)/2; }) : ks;
+      var mapa = {}, lista = [];
+      hist[r].forEach(function(st, si){
+        var opciones = [];
+        var ok = true;
+        for(var q=0;q<libres.length && ok;q++){
+          var i = libres[q], K = rej[r][i], L = st.arr[i], R = st.arr[i+1], op = [];
+          if(L === K && R === K){
+            var mejorT = 'f', mejorC = Infinity;
+            ['f','b','fb','bf'].forEach(function(tt){ var cc = coste(r, i, tt); if(cc < mejorC){ mejorC = cc; mejorT = tt; } });
+            op = [[mejorT, mejorT === 'f' || mejorT === 'b']];
+          }
+          else if(L === K) op = [['f',true],['fb',false]];
+          else if(R === K) op = [['b',true],['bf',false]];
+          if(!op.length) ok = false; else opciones.push([i, op]);
+        }
+        if(!ok) return;
+        var total = 1;
+        opciones.forEach(function(o){ total *= o[1].length; });
+        for(var cmb=0; cmb<total; cmb++){
+          var rest = cmb, arr = st.arr.slice(), c = st.c, tipos = {}, malo = false;
+          for(var q=0;q<opciones.length;q++){
+            var i = opciones[q][0], op = opciones[q][1];
+            var sel = op[rest % op.length]; rest = Math.floor(rest / op.length);
+            tipos[i] = sel;
+            c += coste(r, i, sel[0]);
+            if(opt.simetrico){
+              var j = n - 2 - i;
+              if(j !== i && (j in rej[r])){
+                var te = ESP[sel[0]], K2 = rej[r][j];
+                if((te === 'f' || te === 'fb') && arr[j] !== K2) { malo = true; break; }
+                if((te === 'b' || te === 'bf') && arr[j+1] !== K2) { malo = true; break; }
+                tipos[j] = [te, te === 'f' || te === 'b'];
+                c += coste(r, j, te);
+              }
+            }
+          }
+          if(malo) continue;
+          Object.keys(tipos).map(Number).sort(function(a,b){return a-b;}).forEach(function(i){
+            if(tipos[i][1]){ var z = arr[i]; arr[i] = arr[i+1]; arr[i+1] = z; }
+          });
+          var clave = arr.join(',');
+          var lin = Object.keys(tipos).map(Number).sort(function(a,b){return a-b;}).map(function(i){ return tipos[i][0]; });
+          if(!(clave in mapa) || c < lista[mapa[clave]].c){
+            if(clave in mapa) lista[mapa[clave]] = {orden:clave, arr:arr, c:c, prev:si, tipos:lin};
+            else { mapa[clave] = lista.length; lista.push({orden:clave, arr:arr, c:c, prev:si, tipos:lin}); }
+          }
+        }
+      });
+      if(!lista.length) return null;
+      lista.sort(function(a,b){ return a.c - b.c; });
+      hist.push(lista.slice(0, 1200));
+    }
+    var ult = hist[NF];
+    var meta = 0;
+    if(opt.cierra){
+      for(var i=0;i<ult.length;i++) if(ult[i].orden === inicial.join(',')){ meta = i; break; }
+    }
+    var filas = [], cur = meta;
+    for(var r=NF; r>0; r--){ filas.push(hist[r][cur].tipos); cur = hist[r][cur].prev; }
+    filas.reverse();
+    return {filas:filas, coste:ult[meta].c, cierra:ult[meta].orden === inicial.join(',')};
+  }
+  var sol = pasada();
+  if(!sol && opt.simetrico){ opt.simetrico = false; sol = pasada(); }
+  if(!sol) return null;
+  /* una vuelta más con las plantillas aprendidas */
+  TIPOS.forEach(function(t){ acum[t] = []; });
+  sol.filas.forEach(function(ts, r){
+    var ks = Object.keys(rej[r]).map(Number).sort(function(a,b){return a-b;});
+    ks.forEach(function(i, q){ acum[ts[q]].push(glifos[r+','+i].p); });
+  });
+  TIPOS.forEach(function(t){
+    if(!acum[t].length) return;
+    var v = new Float32Array(lado);
+    acum[t].forEach(function(p){ for(var i=0;i<lado;i++) v[i] += p[i]; });
+    for(var i=0;i<lado;i++) v[i] /= acum[t].length;
+    plant[t] = v;
+  });
+  var sol2 = pasada();
+  return sol2 || sol;
+}
+
+/* ---------------- cadena completa ---------------- */
+function leeGrafico(d, g, opt){
+  opt = opt || {};
+  var n = g.nHilos, NF = g.nFilas, des = g.impar ? 1 : 0;
+  var muestras = [], claves = [];
+  for(var r=0; r<NF; r++){
+    for(var i=(r+des)%2; i<n-1; i+=2){
+      var c = puntoNudo(g, r, i);
+      muestras.push(medianaColor(d, c[0], c[1], g.dx*0.26, g.dx*0.40));
+      claves.push([r, i]);
+    }
+  }
+  var arriba = [];
+  for(var j=0;j<n;j++){
+    var q = puntoHilo(g, j);
+    arriba.push(medianaColor(d, q[0], q[1], 0, Math.max(2, g.dx*0.22)));
+  }
+  var pal = paleta(muestras, opt.kMax || 8);
+  if(pal.centros.length < 2) return null;
+  var cols = pal.centros.map(hex);
+  var rej = [];
+  for(r=0;r<NF;r++) rej.push({});
+  muestras.forEach(function(m, k){
+    if(!m) return;
+    rej[claves[k][0]][claves[k][1]] = cols[pal.de(m)];
+  });
+  var conf = [];
+  var inicial = [];
+  for(j=0;j<n;j++){
+    var q = puntoHilo(g, j);
+    var cm = claseModal(d, q[0], q[1], Math.max(2, Math.round(g.dx*0.16)), pal);
+    inicial.push(cols[cm.clase]); conf.push(cm.conf);
+  }
+  if(opt.inicial) inicial = opt.inicial.slice();
+  else inicial = reparaInicial(inicial, conf, rej, des, n);
+  var glifos = {};
+  claves.forEach(function(k){
+    var r = k[0], i = k[1], c = puntoNudo(g, r, i);
+    var relleno = rej[r][i];
+    var rgb = [parseInt(relleno.substr(1,2),16), parseInt(relleno.substr(3,2),16), parseInt(relleno.substr(5,2),16)];
+    glifos[r+','+i] = parcheGlifo(d, c[0], c[1], Math.round(g.dx*0.40), rgb);
+  });
+  var sol = resuelveTipos(rej, inicial, glifos,
+    {simetrico: opt.simetrico !== false, cierra: opt.cierra !== false});
+  if(!sol) return null;
+  /* verificación: simular y comparar con lo leído */
+  var orden = inicial.slice(), mal = 0, tot = 0, filasTxt = [];
+  var INV = {f:'f', b:'b', fb:'F', bf:'B'};
+  for(r=0;r<NF;r++){
+    var ks = Object.keys(rej[r]).map(Number).sort(function(a,b){ return a-b; });
+    var txt = '';
+    ks.forEach(function(i, q){
+      var t = sol.filas[r][q];
+      var col = (t==='f'||t==='fb') ? orden[i] : orden[i+1];
+      tot++;
+      if(col !== rej[r][i]) mal++;
+      if(t==='f'||t==='b'){ var z=orden[i]; orden[i]=orden[i+1]; orden[i+1]=z; }
+      txt += INV[t];
+    });
+    filasTxt.push(txt);
+  }
+  return {
+    colores: cols, inicial: inicial, filas: filasTxt, rejilla: rej,
+    nHilos: n, nFilas: NF, desfase: des,
+    nudos: tot, fallos: mal, cierra: orden.join(',') === inicial.join(',')
+  };
+}
+
+/* si el orden leído de los cabos no cuadra con los primeros nudos, lo corrige
+   por el carril de lectura menos fiable */
+function reparaInicial(inicial, conf, rej, des, n){
+  var orden = inicial.slice();
+  for(var r=0; r<Math.min(6, rej.length); r++){
+    var ks = Object.keys(rej[r]).map(Number).sort(function(a,b){ return a-b; });
+    for(var q=0;q<ks.length;q++){
+      var i = ks[q], K = rej[r][i];
+      if(orden[i] === K || orden[i+1] === K) continue;
+      var cual = (conf[i] <= conf[i+1]) ? i : i+1;
+      /* solo se puede tocar un carril que todavía no haya participado */
+      if(r === 0){ orden[cual] = K; inicial[cual] = K; conf[cual] = 1; }
+    }
+    /* avanza el orden como si todos fueran nudos simples hacia el color visto */
+    for(q=0;q<ks.length;q++){
+      var i2 = ks[q];
+      if(orden[i2] === rej[r][i2]){ var z = orden[i2]; orden[i2] = orden[i2+1]; orden[i2+1] = z; }
+      else if(orden[i2+1] === rej[r][i2]){ var z2 = orden[i2]; orden[i2] = orden[i2+1]; orden[i2+1] = z2; }
+    }
+  }
+  return inicial;
+}
+
+/* ---------------- lienzo de píxeles ---------------- */
+var lienzo = {
+  ancho: 14, alto: 24,
+  paleta: ['#f1e2c7', '#c2186e', '#0fa3b1', '#d99a2b'],
+  celdas: null, pincel: 1
+};
+function lienzoNuevo(w, h, mantener){
+  var viejo = lienzo.celdas;
+  var c = [];
+  for(var r=0;r<h;r++){
+    var fila = [];
+    for(var j=0;j<w;j++){
+      fila.push(mantener && viejo && viejo[r] && viejo[r][j] != null ? viejo[r][j] : 0);
+    }
+    c.push(fila);
+  }
+  lienzo.ancho = w; lienzo.alto = h; lienzo.celdas = c;
+}
+function pintaLienzo(cv){
+  var w = lienzo.ancho, h = lienzo.alto;
+  var lado = Math.max(8, Math.min(26, Math.floor((cv.clientWidth - 2) / w)));
+  cv.width = w*lado; cv.height = h*lado;
+  cv.style.height = (h*lado) + 'px';
+  var x = cv.getContext('2d');
+  for(var r=0;r<h;r++){
+    for(var j=0;j<w;j++){
+      x.fillStyle = lienzo.paleta[lienzo.celdas[r][j]] || '#888';
+      x.fillRect(j*lado, r*lado, lado, lado);
+    }
+  }
+  x.strokeStyle = 'rgba(0,0,0,.14)'; x.lineWidth = 1;
+  for(j=0;j<=w;j++){ x.beginPath(); x.moveTo(j*lado+.5, 0); x.lineTo(j*lado+.5, h*lado); x.stroke(); }
+  for(r=0;r<=h;r++){ x.beginPath(); x.moveTo(0, r*lado+.5); x.lineTo(w*lado, r*lado+.5); x.stroke(); }
+  return lado;
+}
+function celdaEn(cv, ev){
+  var b = cv.getBoundingClientRect();
+  var lado = b.width / lienzo.ancho;
+  var j = Math.floor((ev.clientX - b.left) / lado);
+  var r = Math.floor((ev.clientY - b.top) / (b.height / lienzo.alto));
+  if(j < 0 || r < 0 || j >= lienzo.ancho || r >= lienzo.alto) return null;
+  return [r, j];
+}
+/* imagen -> celdas, con la paleta actual */
+function imagenALienzo(img){
+  var w = lienzo.ancho, h = lienzo.alto;
+  var cv = document.createElement('canvas');
+  cv.width = w; cv.height = h;
+  var cx = cv.getContext('2d', {willReadFrequently:true});
+  cx.imageSmoothingEnabled = true;
+  cx.drawImage(img, 0, 0, w, h);
+  var d = cx.getImageData(0, 0, w, h);
+  var pal = lienzo.paleta.map(function(x){
+    return [parseInt(x.substr(1,2),16), parseInt(x.substr(3,2),16), parseInt(x.substr(5,2),16)];
+  });
+  for(var r=0;r<h;r++){
+    for(var j=0;j<w;j++){
+      var i = (r*w+j)*4;
+      var p = [d.data[i], d.data[i+1], d.data[i+2]];
+      var mejor = 0, dm = Infinity;
+      pal.forEach(function(c, k){
+        var e = (p[0]-c[0])*(p[0]-c[0]) + (p[1]-c[1])*(p[1]-c[1]) + (p[2]-c[2])*(p[2]-c[2]);
+        if(e < dm){ dm = e; mejor = k; }
+      });
+      lienzo.celdas[r][j] = mejor;
+    }
+  }
+}
+/* saca una paleta de k colores de la imagen */
+function paletaDeImagen(img, k){
+  var cv = document.createElement('canvas');
+  cv.width = 60; cv.height = 60;
+  var cx = cv.getContext('2d', {willReadFrequently:true});
+  cx.drawImage(img, 0, 0, 60, 60);
+  var d = cx.getImageData(0,0,60,60), pts = [];
+  for(var i=0;i<d.data.length;i+=4) pts.push([d.data[i], d.data[i+1], d.data[i+2]]);
+  var pal = paleta(pts, k);
+  return pal.centros.map(hex);
+}
+
 /* ---------------- interfaz ---------------- */
 function fmt(n, d){
   d = (d == null) ? 1 : d;
@@ -1135,10 +2144,10 @@ function fmt(n, d){
 function cm(n, d){ return fmt(n, d) + ' cm'; }
 function $(id){ return document.getElementById(id); }
 
-var est = {muneca:16, holgura:1.5, cierre:'trenzas', hilo:'m6', patron:'chevron', paso:0};
+var est = {muneca:16, holgura:1.5, cierre:'trenzas', hilo:'m6', patron:'chevron', paso:0, paleta:{}};
 
 function motivoDe(p){
-  return (p.familia === 'grafico') ? periodoVisual(p) : 0;
+  return (p.familia === 'grafico' || p.familia === 'alfa') ? periodoVisual(p) : 0;
 }
 function filasMostradas(p){
   var m = motivoDe(p), k = 1;
@@ -1147,14 +2156,257 @@ function filasMostradas(p){
   return m * k;
 }
 function chip(color, texto){
-  return '<span class="nudo-chip"><b style="background:'+hiloInfo(color).x+'"></b><em>'+texto+'</em></span>';
+  return '<span class="nudo-chip"><b style="background:'+tono(color)+'"></b><em>'+texto+'</em></span>';
+}
+
+/* ---------------- patrones propios ---------------- */
+var PROPIOS = [];
+function registra(p){
+  for(var i=0;i<PROPIOS.length;i++) if(PROPIOS[i].id === p.id){ PROPIOS[i] = p; return p; }
+  PROPIOS.push(p);
+  return p;
+}
+function todosLosPatrones(){ return PROPIOS.concat(PATRONES); }
+
+/* ---------------- pestañas ---------------- */
+function pintaPestanas(){
+  Array.prototype.forEach.call(document.querySelectorAll('.pest'), function(b){
+    b.addEventListener('click', function(){
+      var v = b.getAttribute('data-vista');
+      Array.prototype.forEach.call(document.querySelectorAll('.pest'), function(o){
+        o.setAttribute('aria-selected', String(o === b));
+      });
+      ['catalogo','pixel','leer'].forEach(function(k){ $('v-'+k).hidden = (k !== v); });
+      if(v === 'pixel') setTimeout(function(){ pintaLienzo($('px-lienzo')); }, 0);
+    });
+  });
+}
+
+/* ---------------- editor de píxeles ---------------- */
+function pintaPaletaPx(){
+  $('px-paleta').innerHTML = lienzo.paleta.map(function(c, i){
+    return '<span class="tinta-caja'+(i===lienzo.pincel?' sel':'')+'" data-i="'+i+'">'+
+      '<input type="color" value="'+c+'" data-i="'+i+'" aria-label="Color '+(i+1)+'">'+
+      (lienzo.paleta.length > 2 ? '<button type="button" class="quita" data-q="'+i+'" aria-label="Quitar color">×</button>' : '')+
+      '</span>';
+  }).join('') + '<button type="button" class="btn chico" id="px-mas">+ color</button>';
+
+  Array.prototype.forEach.call($('px-paleta').querySelectorAll('.tinta-caja'), function(el){
+    el.addEventListener('click', function(ev){
+      if(ev.target.tagName === 'BUTTON' || ev.target.tagName === 'INPUT') return;
+      lienzo.pincel = +el.getAttribute('data-i'); pintaPaletaPx();
+    });
+  });
+  Array.prototype.forEach.call($('px-paleta').querySelectorAll('input[type=color]'), function(inp){
+    inp.addEventListener('input', function(){
+      lienzo.paleta[+inp.getAttribute('data-i')] = inp.value;
+      pintaLienzo($('px-lienzo'));
+    });
+    inp.addEventListener('click', function(){ lienzo.pincel = +inp.getAttribute('data-i'); });
+  });
+  Array.prototype.forEach.call($('px-paleta').querySelectorAll('.quita'), function(b){
+    b.addEventListener('click', function(ev){
+      ev.stopPropagation();
+      var i = +b.getAttribute('data-q');
+      lienzo.paleta.splice(i, 1);
+      for(var r=0;r<lienzo.alto;r++) for(var j=0;j<lienzo.ancho;j++){
+        if(lienzo.celdas[r][j] === i) lienzo.celdas[r][j] = 0;
+        else if(lienzo.celdas[r][j] > i) lienzo.celdas[r][j]--;
+      }
+      if(lienzo.pincel >= lienzo.paleta.length) lienzo.pincel = 0;
+      pintaPaletaPx(); pintaLienzo($('px-lienzo'));
+    });
+  });
+  var mas = $('px-mas');
+  if(mas) mas.addEventListener('click', function(){
+    if(lienzo.paleta.length >= 8) return;
+    lienzo.paleta.push('#7a3f93'); lienzo.pincel = lienzo.paleta.length - 1;
+    pintaPaletaPx(); pintaLienzo($('px-lienzo'));
+  });
+}
+function montaLienzo(){
+  var cv = $('px-lienzo'), pintando = false;
+  function aplica(ev){
+    var c = celdaEn(cv, ev);
+    if(!c) return;
+    if(lienzo.celdas[c[0]][c[1]] === lienzo.pincel) return;
+    lienzo.celdas[c[0]][c[1]] = lienzo.pincel;
+    pintaLienzo(cv);
+  }
+  cv.addEventListener('pointerdown', function(ev){ pintando = true; cv.setPointerCapture(ev.pointerId); aplica(ev); ev.preventDefault(); });
+  cv.addEventListener('pointermove', function(ev){ if(pintando) aplica(ev); });
+  cv.addEventListener('pointerup', function(){ pintando = false; });
+  cv.addEventListener('pointercancel', function(){ pintando = false; });
+
+  ['px-ancho','px-alto'].forEach(function(id){
+    $(id).addEventListener('change', function(){
+      var w = Math.max(4, Math.min(30, +$('px-ancho').value || 14));
+      var al = Math.max(6, Math.min(90, +$('px-alto').value || 24));
+      $('px-ancho').value = w; $('px-alto').value = al;
+      lienzoNuevo(w, al, true); pintaLienzo(cv);
+    });
+  });
+  $('px-limpiar').addEventListener('click', function(){
+    lienzoNuevo(lienzo.ancho, lienzo.alto, false); pintaLienzo(cv);
+  });
+  $('px-espejo').addEventListener('click', function(){
+    for(var r=0;r<lienzo.alto;r++){
+      for(var j=0;j<Math.floor(lienzo.ancho/2);j++){
+        lienzo.celdas[r][lienzo.ancho-1-j] = lienzo.celdas[r][j];
+      }
+    }
+    pintaLienzo(cv);
+  });
+  $('px-archivo').addEventListener('change', function(ev){
+    var f = ev.target.files && ev.target.files[0];
+    if(!f) return;
+    var img = new Image();
+    img.onload = function(){
+      if($('px-auto').checked){
+        var np = paletaDeImagen(img, Math.min(6, lienzo.paleta.length + 2));
+        if(np.length >= 2){ lienzo.paleta = np; lienzo.pincel = 0; pintaPaletaPx(); }
+      }
+      imagenALienzo(img);
+      pintaLienzo(cv);
+      $('px-aviso').textContent = 'Imagen ajustada a ' + lienzo.ancho + ' × ' + lienzo.alto + ' celdas. Retoca lo que haga falta y crea el patrón.';
+      URL.revokeObjectURL(img.src);
+    };
+    img.src = URL.createObjectURL(f);
+  });
+  $('px-crear').addEventListener('click', function(){
+    var celdas = lienzo.celdas.map(function(f){ return f.map(function(k){ return lienzo.paleta[k]; }); });
+    var aj = ajustaAlfa(celdas);
+    var p = patronAlfa('px' + Date.now().toString(36), 'Diseño propio', aj);
+    registra(p);
+    est.patron = p.id; est.paso = 0;
+    pintaCatalogo(); pintaTodo();
+    var pc = Math.round(aj.fidelidad * 100);
+    $('px-aviso').innerHTML = pc >= 100
+      ? '<b>Listo.</b> El dibujo se puede tejer entero: cada celda sale del hilo de fondo de su columna o del hilo de trabajo de su fila.'
+      : '<b>Listo, con ' + pc + ' % del dibujo.</b> ' + aj.fallos.length + ' celdas no se pueden tejer en esa posición y se han cambiado al color del fondo de su columna. Con menos colores, o con los colores agrupados en columnas, sube el porcentaje.';
+    $('panel').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+}
+
+/* ---------------- leer un gráfico ---------------- */
+var lectura = {img:null, cv:null, datos:null, rejilla:null};
+function dibujaOverlay(){
+  var cv = $('im-lienzo'), g = lectura.rejilla;
+  if(!lectura.img) return;
+  var cx = cv.getContext('2d');
+  cv.width = lectura.cv.width; cv.height = lectura.cv.height;
+  cx.drawImage(lectura.cv, 0, 0);
+  if(!g) return;
+  var des = g.impar ? 1 : 0;
+  cx.lineWidth = Math.max(1, g.dx*0.05);
+  for(var r=0;r<g.nFilas;r++){
+    for(var i=(r+des)%2; i<g.nHilos-1; i+=2){
+      var p = puntoNudo(g, r, i);
+      cx.beginPath();
+      cx.arc(p[0], p[1], g.dx*0.30, 0, Math.PI*2);
+      cx.strokeStyle = 'rgba(255,255,255,.95)'; cx.stroke();
+      cx.beginPath();
+      cx.arc(p[0], p[1], g.dx*0.30, 0, Math.PI*2);
+      cx.strokeStyle = 'rgba(179,31,92,.95)'; cx.lineWidth = Math.max(1, g.dx*0.05)*0.5; cx.stroke();
+      cx.lineWidth = Math.max(1, g.dx*0.05);
+    }
+  }
+  for(var j=0;j<g.nHilos;j++){
+    var q = puntoHilo(g, j);
+    cx.beginPath(); cx.arc(q[0], q[1], g.dx*0.16, 0, Math.PI*2);
+    cx.strokeStyle = 'rgba(11,122,130,.95)'; cx.stroke();
+  }
+}
+function sincronizaMandos(){
+  var g = lectura.rejilla;
+  if(!g) return;
+  $('im-hilos').value = g.nHilos; $('im-filas').value = g.nFilas;
+  $('im-x0').value = Math.round(g.x0); $('im-y0').value = Math.round(g.y0);
+  $('im-dx').value = g.dx.toFixed(1); $('im-dy').value = g.dy.toFixed(1);
+  $('im-impar').checked = !!g.impar;
+  $('im-calidad').textContent = g.calidad != null
+    ? 'Encaje de la rejilla: ' + Math.round(g.calidad*100) + ' %'
+    : '';
+}
+function montaLectura(){
+  $('im-archivo').addEventListener('change', function(ev){
+    var f = ev.target.files && ev.target.files[0];
+    if(!f) return;
+    $('im-aviso').textContent = 'Buscando la rejilla…';
+    var img = new Image();
+    img.onload = function(){
+      lectura.img = img;
+      lectura.cv = aCanvas(img, 2200);
+      lectura.datos = datos(lectura.cv);
+      $('im-ajustes').hidden = false;
+      setTimeout(function(){
+        lectura.rejilla = detectaRejilla(lectura.datos);
+        if(!lectura.rejilla){
+          $('im-aviso').textContent = 'No he encontrado una rejilla de nudos en esa imagen. Prueba con una captura del gráfico, recortada y de frente.';
+          return;
+        }
+        sincronizaMandos(); dibujaOverlay();
+        var g2 = lectura.rejilla;
+        $('im-aviso').innerHTML = 'Rejilla detectada: <b>' + g2.nHilos + ' hilos</b> y <b>' +
+          g2.nFilas + ' filas</b>, con un encaje del ' + Math.round((g2.calidad||0)*100) + ' %. ' +
+          (g2.dx < 22 ? 'Los nudos salen muy pequeños en esta imagen; con una captura más grande se lee mejor. ' : '') +
+          'Comprueba que los círculos caen sobre los nudos y los puntos azules sobre los cabos de arriba; si no, ajústalo a mano.';
+      }, 30);
+      URL.revokeObjectURL(img.src);
+    };
+    img.src = URL.createObjectURL(f);
+  });
+  ['im-hilos','im-filas','im-x0','im-y0','im-dx','im-dy','im-impar'].forEach(function(id){
+    $(id).addEventListener('input', function(){
+      if(!lectura.rejilla) return;
+      var g = lectura.rejilla;
+      g.nHilos = Math.max(3, +$('im-hilos').value || g.nHilos);
+      g.nFilas = Math.max(2, +$('im-filas').value || g.nFilas);
+      g.x0 = +$('im-x0').value; g.y0 = +$('im-y0').value;
+      g.dx = Math.max(4, +$('im-dx').value); g.dy = Math.max(4, +$('im-dy').value);
+      g.impar = $('im-impar').checked;
+      dibujaOverlay();
+    });
+  });
+  $('im-detectar').addEventListener('click', function(){
+    if(!lectura.datos) return;
+    $('im-aviso').textContent = 'Buscando la rejilla…';
+    setTimeout(function(){
+      lectura.rejilla = detectaRejilla(lectura.datos);
+      sincronizaMandos(); dibujaOverlay();
+      $('im-aviso').textContent = 'Rejilla detectada de nuevo.';
+    }, 30);
+  });
+  $('im-leer').addEventListener('click', function(){
+    if(!lectura.rejilla){ $('im-aviso').textContent = 'Primero sube una foto del gráfico.'; return; }
+    $('im-aviso').textContent = 'Leyendo los nudos…';
+    setTimeout(function(){
+      var res = leeGrafico(lectura.datos, lectura.rejilla,
+        {simetrico: $('im-sim').checked, cierra: $('im-cierra').checked});
+      if(!res){ $('im-aviso').textContent = 'He leído los colores pero no encuentro una secuencia de nudos que los produzca. Ajusta la rejilla o desmarca las dos casillas de abajo.'; return; }
+      var hilos = res.inicial.map(function(c){ return {dmc:c}; });
+      var p = {
+        id:'im' + Date.now().toString(36), nombre:'Gráfico leído', alias:res.nHilos+' hilos, '+res.colores.length+' colores',
+        dif:3, familia:'grafico', hilos:hilos, filas:res.filas, ciclo:res.nFilas, mult:5,
+        intro:'Patrón leído de una imagen. Los colores y el orden de los hilos salen de la propia foto.'
+      };
+      registra(p);
+      est.patron = p.id; est.paso = 0;
+      pintaCatalogo(); pintaTodo();
+      var pc = res.nudos ? Math.round((1 - res.fallos/res.nudos)*100) : 0;
+      $('im-aviso').innerHTML = '<b>' + res.nudos + ' nudos leídos, ' + pc + ' % reproducen el gráfico.</b> ' +
+        (res.cierra ? 'Los hilos vuelven a su orden inicial al terminar, que es buena señal. ' : 'Los hilos no vuelven a su orden inicial; puede que falte alguna fila. ') +
+        'Compruébalo contra la imagen antes de ponerte a anudar.';
+      $('panel').scrollIntoView({behavior:'smooth', block:'start'});
+    }, 30);
+  });
 }
 
 function pintaMuestrario(){
   var codigos = ['3804','3845','783','712','937','351','552','311','310','B5200'];
   var alturas = [100,78,92,64,86,70,96,74,88,60];
   $('muestrario').innerHTML = codigos.map(function(c, i){
-    return '<i style="background:'+hiloInfo(c).x+';height:'+alturas[i]+'%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)"></i>';
+    return '<i style="background:'+tono(c)+';height:'+alturas[i]+'%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)"></i>';
   }).join('');
 }
 
@@ -1168,14 +2420,17 @@ function pintaSelectores(){
 }
 
 function pintaCatalogo(){
-  $('catalogo').innerHTML = PATRONES.map(function(p){
-    var mini = (p.familia === 'grafico')
-      ? svgBanda(p, {s:7, repes:Math.max(1, Math.round(30 / periodoVisual(p))), id:'m'})
-      : svgEsquema(p, 14, {w:46, kh:13, horizontal:true});
+  $('catalogo').innerHTML = todosLosPatrones().map(function(p){
+    var mini = (p.familia === 'alfa')
+      ? svgBandaAlfa(p, {s:5, repes:1, id:'m'})
+      : (p.familia === 'grafico')
+        ? svgBanda(p, {s:7, repes:Math.max(1, Math.round(30 / periodoVisual(p))), id:'m'})
+        : svgEsquema(p, 14, {w:46, kh:13, horizontal:true});
+    var propio = PROPIOS.indexOf(p) >= 0;
     var puntos = [1,2,3].map(function(i){ return '<i class="'+(i<=p.dif?'on':'')+'"></i>'; }).join('');
     return '<li><button type="button" class="tarjeta" data-id="'+p.id+'" aria-pressed="'+(p.id===est.patron)+'">'+
       '<span class="mini">'+mini+'</span>'+
-      '<h3>'+esc(p.nombre)+'</h3>'+
+      '<h3>'+esc(p.nombre)+(propio?' <span class="rol">tuyo</span>':'')+'</h3>'+
       '<span class="meta"><span>'+esc(p.alias)+'</span><span class="puntos" title="Dificultad '+p.dif+' de 3">'+puntos+'</span></span>'+
       '<span class="meta" style="color:var(--tinta-3)">'+p.hilos.length+' hilos</span>'+
       '</button></li>';
@@ -1191,12 +2446,12 @@ function pintaCatalogo(){
 }
 
 function pintaNudos(){
-  $('lista-nudos').innerHTML = FICHAS.map(function(f){
+  $('lista-nudos').innerHTML = fichasNudo() + FICHAS_MACRAME.map(function(f){
     var tiras = f.tiras.map(function(t){
-      return '<figure class="tira">'+t.s+'<figcaption><b>Paso '+t.b+'</b>'+esc(t.x)+'</figcaption></figure>';
+      return '<figure class="tira"><span class="paso-n">'+t.b+'</span>'+t.s()+'<figcaption>'+esc(t.x)+'</figcaption></figure>';
     }).join('');
     return '<article class="nudo-ficha"><h3>'+esc(f.t)+' <code>'+esc(f.sim)+'</code></h3>'+
-      '<p>'+esc(f.nota)+'</p><div class="tiras">'+tiras+'</div>'+
+      '<p>'+esc(f.nota)+'</p><div class="tiras tres">'+tiras+'</div>'+
       '<p class="usa">'+esc(f.usa)+'</p></article>';
   }).join('');
 }
@@ -1214,47 +2469,67 @@ function pintaCierres(){
 function pintaPanel(){
   var p = patronPorId(est.patron);
   var c = calcular(p, est);
-  var esGrafico = (p.familia === 'grafico');
-  var total = esGrafico ? filasMostradas(p) : p.pasos.length;
+  var esGrafico = (p.familia === 'grafico'), esAlfa = (p.familia === 'alfa');
+  var total = esGrafico ? filasMostradas(p) : esAlfa ? p.alfa.celdas.length : p.pasos.length;
   if(est.paso > total - 1) est.paso = total - 1;
   if(est.paso < 0) est.paso = 0;
 
   $('p-nombre').textContent = p.nombre;
-  $('p-tipo').textContent = esGrafico ? 'Gráfico de nudos' : 'Esquema';
+  $('p-tipo').textContent = esAlfa ? 'Gráfico alfa' : esGrafico ? 'Gráfico de nudos' : 'Esquema';
 
-  /* gráfico o esquema */
   var repes = Math.max(1, Math.round(70 / Math.max(6, periodoVisual(p))));
-  $('p-banda').innerHTML = (p.familia === 'grafico')
-    ? svgBanda(p, {s:8, repes:repes, id:'g'})
+  $('p-banda').innerHTML = esAlfa ? svgBandaAlfa(p, {s:7, repes:Math.min(3, repes), id:'g'})
+    : (p.familia === 'grafico') ? svgBanda(p, {s:8, repes:repes, id:'g'})
     : svgEsquema(p, 26, {w:52, kh:13, horizontal:true});
-  $('p-banda-pie').textContent = (p.familia === 'grafico')
-    ? 'Así queda tejida, con el motivo repetido ' + repes + (repes > 1 ? ' veces.' : ' vez.')
+  $('p-banda-pie').textContent = esAlfa ? 'Así queda tejida: cada cuadro es un nudo.'
+    : (p.familia === 'grafico') ? 'Así queda tejida, con el motivo repetido ' + repes + (repes > 1 ? ' veces.' : ' vez.')
     : 'Así queda tejida.';
 
-  if(esGrafico){
-    var sim = simular(p, total);
+  var simA = null, sim = null;
+  if(esAlfa){
+    simA = simularAlfa(p, total);
+    var dxa = p.alfa.fondo.length > 16 ? 18 : 24;
+    $('p-grafico').innerHTML = svgAlfa(p, simA, {dx:dxa, dy:dxa*0.84, numeros:true, cabos:true, activa:est.paso});
+    $('p-cuenta').textContent = 'Fila ' + (est.paso + 1) + ' de ' + total;
+    $('p-intro').textContent = p.intro;
+  } else if(esGrafico){
+    sim = simular(p, total);
     var dx = p.hilos.length > 10 ? 21 : 26;
     $('p-grafico').innerHTML = svgGrafico(p, sim, {dx:dx, dy:dx*0.82, numeros:true, cabos:true, activa:est.paso});
-    var let2 = letrasDe(p);
-    var cuantos = {};
-    p.hilos.forEach(function(x){ cuantos[x.dmc] = (cuantos[x.dmc] || 0) + 1; });
-    $('p-leyenda').innerHTML = let2.orden.map(function(k){
-      return '<span><b style="background:'+hiloInfo(k).x+'"></b>'+let2.mapa[k]+' · '+esc(hiloInfo(k).n)+
-             ' ×'+cuantos[k]+' <code>DMC '+esc(k)+'</code></span>';
-    }).join('') + '<span style="color:var(--tinta-3)">Las letras de arriba y de abajo son el orden de los hilos. La flecha de cada nudo indica hacia dónde se anuda.</span>';
     $('p-cuenta').textContent = 'Fila ' + (est.paso + 1) + ' de ' + total;
     $('p-intro').textContent = p.intro + ' El dibujo se repite cada ' + motivoDe(p) + ' filas.';
   } else {
     $('p-grafico').innerHTML = '<div style="display:flex;gap:14px;justify-content:center;align-items:flex-start">'+
       svgEsquema(p, 10, {w:76, kh:15}) + '</div>';
-    $('p-leyenda').innerHTML = p.hilos.map(function(x, i){
-      return (i === 0 || i === p.hilos.length - 1)
-        ? '<span><b style="background:'+hiloInfo(x.dmc).x+'"></b>'+(x.base?'Base':'Trabajo')+': '+esc(hiloInfo(x.dmc).n)+' <code>DMC '+esc(x.dmc)+'</code></span>'
-        : '';
-    }).join('');
     $('p-cuenta').textContent = 'Paso ' + (est.paso + 1) + ' de ' + total;
     $('p-intro').textContent = p.intro;
   }
+
+  /* leyenda con los colores editables */
+  var let2 = letrasDe(p), cuantos = {};
+  p.hilos.forEach(function(x){ cuantos[x.dmc] = (cuantos[x.dmc] || 0) + 1; });
+  if(esGrafico || esAlfa){
+    $('p-leyenda').innerHTML = let2.orden.map(function(k){
+      var hi = hiloInfo(k);
+      return '<span class="leyenda-hilo"><input type="color" value="'+tono(k)+'" data-hilo="'+esc(k)+'" aria-label="Color del hilo '+let2.mapa[k]+'">'+
+             let2.mapa[k]+' · '+esc(hi.n)+' ×'+cuantos[k]+(hi.libre ? '' : ' <code>DMC '+esc(k)+'</code>')+'</span>';
+    }).join('') + '<button type="button" class="btn chico" id="p-reset">Colores originales</button>';
+  } else {
+    $('p-leyenda').innerHTML = p.hilos.map(function(x, i){
+      return (i === 0 || i === p.hilos.length - 1)
+        ? '<span class="leyenda-hilo"><input type="color" value="'+tono(x.dmc)+'" data-hilo="'+esc(x.dmc)+'" aria-label="Color">'+
+          (x.base?'Base':'Trabajo')+': '+esc(hiloInfo(x.dmc).n)+'</span>' : '';
+    }).join('') + '<button type="button" class="btn chico" id="p-reset">Colores originales</button>';
+  }
+  Array.prototype.forEach.call($('p-leyenda').querySelectorAll('input[type=color]'), function(inp){
+    inp.addEventListener('input', function(){
+      est.paleta[inp.getAttribute('data-hilo')] = inp.value;
+      pintaCatalogo(); pintaNudos(); pintaPanel();
+    });
+  });
+  if($('p-reset')) $('p-reset').addEventListener('click', function(){
+    est.paleta = {}; pintaCatalogo(); pintaNudos(); pintaPanel();
+  });
 
   /* tabla de hilo */
   $('p-resumen-hilo').textContent = 'Para una banda de ' + cm(c.banda) + ' con ' + CIERRES[est.cierre].n.toLowerCase() + '.';
@@ -1262,11 +2537,11 @@ function pintaPanel(){
   $('p-tabla').innerHTML = c.grupos.map(function(g){
     var hi = hiloInfo(g.dmc);
     return '<tr>'+
-      '<td><span class="hilo-celda"><b style="background:'+hi.x+'"></b><span>'+esc(hi.n)+(g.base?' <span class="rol">base</span>':'')+'</span></span></td>'+
-      '<td><small style="font-family:var(--dato);color:var(--tinta-3)">DMC '+esc(g.dmc)+'</small></td>'+
+      '<td><span class="hilo-celda"><b style="background:'+tono(g.dmc)+'"></b><span>'+esc(hi.n)+(g.base?' <span class="rol">fondo</span>':'')+'</span></span></td>'+
+      '<td><small style="font-family:var(--dato);color:var(--tinta-3)">'+(hi.libre ? esc(g.dmc) : 'DMC '+esc(g.dmc))+'</small></td>'+
       '<td class="n">'+g.corte+' cm</td>'+
       '<td class="n">×'+g.cuantos+'</td>'+
-      '<td class="n">'+fmt(g.total/100, 2).replace(',00','') +' m'+(conMadejas && g.madejas ? ' <small style="color:var(--tinta-3)">('+g.madejas+' madeja'+(g.madejas>1?'s':'')+')</small>' : '')+'</td>'+
+      '<td class="n">'+fmt(g.total/100, 2)+' m'+(conMadejas && g.madejas ? ' <small style="color:var(--tinta-3)">('+g.madejas+' madeja'+(g.madejas>1?'s':'')+')</small>' : '')+'</td>'+
       '</tr>';
   }).join('');
   $('p-tabla-pie').innerHTML = '<tr><td colspan="3">Hilo total</td><td class="n">'+c.nHilos+' hilos</td><td class="n">'+fmt(c.totalCm/100, 2)+' m</td></tr>';
@@ -1275,15 +2550,29 @@ function pintaPanel(){
   if(c.cordon) avisos.push('Más 1 cordón aparte de ' + c.cordon + ' cm para el nudo corredizo.');
   if(p.multBase) avisos.push('Los hilos de base casi no se gastan: van rectos por el centro y solo necesitan el largo de la pulsera.');
   if(p.id === 'cuentas') avisos.push('Calcula unas ' + Math.round(c.banda / 1.5) + ' cuentas, una cada 1,5 cm.');
-  if(est.hilo === 'alg2' && p.familia === 'grafico') avisos.push('Con cordón de 2 mm el gráfico sale mucho más grande: salen menos filas y el dibujo se repite menos veces.');
+  if(esAlfa) avisos.push('En los patrones alfa el hilo de trabajo se gasta muchísimo porque cruza la pulsera en cada fila. Si no te cabe de una pieza, empálmalo por el borde.');
   $('p-aviso').innerHTML = avisos.length ? esc(avisos.join(' ')) : '';
   $('p-aviso').hidden = !avisos.length;
 
   /* paso a paso */
   var lis = [];
-  if(esGrafico){
-    var fs = simular(p, total).filas;
-    fs.forEach(function(nudos, r){
+  if(esAlfa){
+    var n = p.alfa.fondo.length;
+    simA.forEach(function(f, r){
+      var tira = '<svg class="tira-fila" viewBox="0 0 '+(n*10)+' 10" width="'+(n*10)+'" height="10" aria-hidden="true">';
+      f.nudos.forEach(function(k, j){
+        tira += '<rect x="'+(j*10)+'" y="0" width="10" height="10" fill="'+tono(k.color)+'"/>';
+        if(!k.trabaja) tira += '<circle cx="'+(j*10+5)+'" cy="5" r="2" fill="rgba(0,0,0,.45)"/>';
+      });
+      tira += '</svg>';
+      var cuantosT = f.nudos.filter(function(k){ return k.trabaja; }).length;
+      lis.push('<li data-i="'+r+'" class="'+(r===est.paso?'activa':'')+'"><span class="ix">F'+(r+1)+'</span>'+
+        '<span>Cruza '+(f.derecha?'hacia la derecha':'hacia la izquierda')+' con el hilo '+
+        '<span class="nudo-chip"><b style="background:'+tono(f.trabajo)+'"></b></span>: '+
+        cuantosT+' nudos lo dejan a la vista y '+(n-cuantosT)+' los hace el hilo de fondo (los marcados con punto).<br>'+tira+'</span></li>');
+    });
+  } else if(esGrafico){
+    sim.filas.forEach(function(nudos, r){
       var cuentas = {};
       nudos.forEach(function(nd){ cuentas[nd.t] = (cuentas[nd.t] || 0) + 1; });
       var partes = Object.keys(cuentas).map(function(t){
@@ -1291,11 +2580,9 @@ function pintaPanel(){
         if(cuentas[t] === 1) return '1 ' + nm;
         return cuentas[t] + ' ' + nm.replace('nudo doble', 'nudos dobles').replace(/^nudo /, 'nudos ');
       });
-      var resumen = (partes.length > 1)
-        ? partes.slice(0, -1).join(', ') + ' y ' + partes[partes.length - 1]
-        : partes[0];
+      var resumen = (partes.length > 1) ? partes.slice(0, -1).join(', ') + ' y ' + partes[partes.length - 1] : partes[0];
       var chips = nudos.map(function(nd){
-        return chip(nd.color, (nd.i+1) + '·' + (nd.i+2) + ' ' + FLECHA[nd.t]);
+        return '<span class="nudo-chip"><b style="background:'+tono(nd.color)+'"></b><em>'+(nd.i+1)+'·'+(nd.i+2)+' '+FLECHA[nd.t]+'</em></span>';
       }).join(' ');
       lis.push('<li data-i="'+r+'" class="'+(r===est.paso?'activa':'')+'"><span class="ix">F'+(r+1)+'</span>'+
         '<span>'+esc(resumen)+'<br>'+chips+'</span></li>');
@@ -1306,6 +2593,7 @@ function pintaPanel(){
       lis.push('<li data-i="'+i+'" class="'+(i===est.paso?'activa':'')+'"><span class="ix">'+(i+1)+'</span><span>'+esc(txt)+'</span></li>');
     });
   }
+  if(esAlfa) lis.push('<li data-i="-1"><span class="ix">···</span><span>Repite el dibujo entero hasta completar unas <b class="num">'+c.filas+'</b> filas, que son los '+cm(c.banda)+' de banda.</span></li>');
   $('p-filas').innerHTML = lis.join('');
   Array.prototype.forEach.call($('p-filas').querySelectorAll('li[data-i]'), function(li){
     var i = parseInt(li.getAttribute('data-i'), 10);
@@ -1315,21 +2603,30 @@ function pintaPanel(){
   $('b-ant').disabled = (est.paso <= 0);
   $('b-sig').disabled = (est.paso >= total - 1);
 
-  /* resumen de medidas */
   $('r-final').textContent = cm(c.largoFinal);
   $('r-banda').textContent = cm(c.banda);
   $('r-cierre').textContent = cm(c.reserva);
-  $('r-filas').textContent = esGrafico ? String(c.filas) : (String(c.filas) + ' nudos');
+  $('r-filas').textContent = (esGrafico || esAlfa) ? String(c.filas) : (String(c.filas) + ' nudos');
 
-  /* fórmula */
   var tipo = TIPOS[est.hilo], ci = CIERRES[est.cierre];
-  var trabajo = c.hilos.filter(function(x){ return !x.base; })[0] || c.hilos[0];
-  $('formula').innerHTML =
-    'largo final  = muñeca <b>'+fmt(est.muneca)+'</b> + holgura <b>'+fmt(est.holgura)+'</b> = <b>'+fmt(c.largoFinal)+' cm</b><br>'+
-    'banda        = '+fmt(c.largoFinal)+' − '+fmt(ci.reduce)+' del cierre = <b>'+fmt(c.banda)+' cm</b><br>'+
-    'por hilo     = '+fmt(c.banda)+' × '+fmt(trabajo.mult)+' del patrón × '+fmt(tipo.f, 2)+' del hilo + '+ci.extra+' del cierre = '+Math.round(trabajo.exacto)+' cm<br>'+
-    '             + 10 % de margen, redondeado a 5 cm → <b>'+trabajo.corte+' cm</b><br>'+
-    'total        = '+c.nHilos+' hilos → <b>'+fmt(c.totalCm/100, 2)+' m</b>';
+  if(esGrafico || esAlfa){
+    var masLargo = c.grupos.reduce(function(a, g){ return g.corte > a.corte ? g : a; }, c.grupos[0]);
+    $('formula').innerHTML =
+      'largo final  = muñeca <b>'+fmt(est.muneca)+'</b> + holgura <b>'+fmt(est.holgura)+'</b> = <b>'+fmt(c.largoFinal)+' cm</b><br>'+
+      'banda        = '+fmt(c.largoFinal)+' − '+fmt(ci.reduce)+' del cierre = <b>'+fmt(c.banda)+' cm</b><br>'+
+      'filas        = '+fmt(c.banda)+' × '+fmt(tipo.filas, 1)+' filas por cm = <b>'+c.filas+'</b><br>'+
+      'hilo más largo = '+fmt(c.banda)+' de recorrido + '+masLargo.nudos+' nudos × '+fmt(c.kcm, 2)+' + '+ci.extra+' del cierre<br>'+
+      '             + 10 % de margen, redondeado a 5 cm → <b>'+masLargo.corte+' cm</b><br>'+
+      'total        = '+c.nHilos+' hilos → <b>'+fmt(c.totalCm/100, 2)+' m</b>';
+  } else {
+    var trabajo = c.hilos.filter(function(x){ return !x.base; })[0] || c.hilos[0];
+    $('formula').innerHTML =
+      'largo final  = muñeca <b>'+fmt(est.muneca)+'</b> + holgura <b>'+fmt(est.holgura)+'</b> = <b>'+fmt(c.largoFinal)+' cm</b><br>'+
+      'banda        = '+fmt(c.largoFinal)+' − '+fmt(ci.reduce)+' del cierre = <b>'+fmt(c.banda)+' cm</b><br>'+
+      'por hilo     = '+fmt(c.banda)+' × '+fmt(trabajo.mult)+' del patrón × '+fmt(tipo.f, 2)+' del hilo + '+ci.extra+' del cierre<br>'+
+      '             + 10 % de margen, redondeado a 5 cm → <b>'+trabajo.corte+' cm</b><br>'+
+      'total        = '+c.nHilos+' hilos → <b>'+fmt(c.totalCm/100, 2)+' m</b>';
+  }
 
   $('cierre-nota').textContent = ci.nota;
   $('hilo-nota').textContent = tipo.nota;
@@ -1352,10 +2649,16 @@ function leeCampos(){
 
 pintaMuestrario();
 pintaSelectores();
+pintaPestanas();
+lienzoNuevo(lienzo.ancho, lienzo.alto, false);
+pintaPaletaPx();
+montaLienzo();
+montaLectura();
 pintaCatalogo();
 pintaNudos();
 pintaCierres();
 pintaTodo();
+addEventListener('resize', function(){ if(!$('v-pixel').hidden) pintaLienzo($('px-lienzo')); });
 
 ['muneca','holgura','cierre','hilo'].forEach(function(id){
   $(id).addEventListener('input', leeCampos);
